@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} 共创园 {% endblock title %}
+{% block body %}
+<h2> 搜索结果 </h1>
+  <hr/>
+  <h3>文章 </h3>
+  {% for article in article_list %}
+    <li> <a href="{{article.get_absolute_url}}"> {{artitle.title}} </a> </li>
+  {% endfor %}
+  <hr/>
+  <h3>项目 </h3>
+  {% for project in project_list %}
+    <li> <a href="{{project.get_absolute_url}}"> {{project.project_name}} </a> </li>
+  {% endfor %}
+{% endblock body %}

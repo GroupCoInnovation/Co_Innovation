@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} {{request.session.user_name}} {% endblock title %}
+{% block body %}
+  <h1> {{user.user_name}} </h1>
+    <h3>已有权限: </h3>
+    <!-- roots_not_change is a list of tuple(root_name, root) -->
+    {% for root_name, root in roots_not_change %}
+    {{root_name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {% endfor %}
+    <h3> 可编辑的权限: </h3>
+    <form name="input" action="{% url 'edit_root_process' %}" method="post">
+      {% csrf_token %}
+        {% for root_name, root in roots_edit %}
+            {% if root > 0 %}
+                {{root_name}}:
+                <input type="checkbox" name="root_{{forloop.counter}}" value={{root}} />
+                <br />
+            {% endif %}
+        {% endfor %}
+          <input type="hidden" name="roots_not_change_all" value={{roots_not_change_all}} />
+          <input type="hidden" name="user_name" value="{{user.user_name}}" />
+        <input type="submit" value="确定" />
+    </form>
+{% endblock body %}

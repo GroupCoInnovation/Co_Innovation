@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+{% block body %}
+  <h1> {{article.title}} </h1>
+  <h4> {{article.column.column_name}} &nbsp;&nbsp;&nbsp;{{article.column.column_text}} &nbsp;&nbsp;&nbsp; {{article.pub_date}}</h4> <br />
+  {{article.content|safe}}
+{% endblock %}

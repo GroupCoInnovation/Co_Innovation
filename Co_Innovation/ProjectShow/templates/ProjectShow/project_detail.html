@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} {{project.project_name}} {% endblock title %}
+
+{% block body %}
+  <h1> {{project.project_name}} </h1><br/>
+  <h3>项目负责人: {{project.principal.user_name}} </h3>
+  <h3>成员:</h3>
+  {% for member in project.members.all %}
+    <li>{{member.user_name}}</li>
+  {% endfor %}
+  <hr />
+  <h2> 项目任务 </h2>
+  {% for task in task_list %}
+    <li> {{task.task_name}} &nbsp;&nbsp;&nbsp;&nbsp; {{task.work.user_name}}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      {% if task.is_finished %} 奖励金币:{{task.reward}}&nbsp;&nbsp;&nbsp;{{task.finish_time}}
+      {% else %}未完成
+      {% endif %}
+    </li>
+  {% endfor %}
+  <hr/>
+  项目完成情况:
+  {% if project.status == 0 %}未完成
+  {% elif project.status == 1 %}已完成但未发表文章
+  {% else %} 完成且已发表文章
+  {% endif %}
+  <hr/>
+{% endblock body %}

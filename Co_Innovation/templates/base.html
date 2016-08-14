@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>
+  {% block title %} 共创园首页{% endblock title %}
+  </title>
+
+  {% block richtext %}
+  {% endblock richtext%}
+
+  {% block script %}
+      {% load staticfiles %}
+      <script type="text/javascript" src='{% static 'scripts/jquery-2.2.0.js'%}'></script>
+      <script>
+          $(document).ready(function(){
+            $("#user_name").blur(function(){
+              var uname = $("#user_name").val();
+              $.get("{% url 'find_user' %}",{'user_name':uname}, function(ret){
+                  $('#hint').html(ret);
+              })
+            });
+            $("#submit_art").click(function(){
+                $("form#art").attr("action","{% url 'SystemArticle_write_article' %}");
+                $("form#art").attr("target","_self");
+            });
+            $("#preview_art").click(function(){
+                $("form#art").attr("action","{% url 'SystemArticle_preview' %}");
+                $("form#art").attr("target","_blank");
+            });
+            var ms = $("#vip");
+            var add = $("#_picture");
+            ms.mouseenter(function(){
+                add.css("display",'block');
+                ms.css("display",'none');
+            });
+            add.mouseleave(function(){
+                add.css( "display",'none');
+                ms.css("display",'block');
+            });
+          });
+      </script>
+  {% endblock%}
+
+
+  {% block javascript %}
+   <!--用于判断root位的脚本函数  -->
+    <script type="text/javascript">
+           var superuser = 1, write_root = 2, edit_article_root = 4;
+           var stick_root = 8, create_user_root = 16, edit_root_root = 32;
+            function judge(a, b) {
+                if (a & b ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+    </script>
+  {% endblock javascript %}
+
+  {% load staticfiles %}
+  <link rel="shortcut icon" href="{% static 'base/img/ICON/logo.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="http://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'base/css/Public/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/HorizontalScrollstyle.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/jquery.mCustomScrollbar.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'base/css/Lunbo.css' %}">
+  <script type="text/javascript" src="{% static 'base/js/Public/ie8.js' %}"></script>
+  <script type="text/javascript" src="{% static 'base/js/Public/jquery.1.10.2.js' %}"></script>
+  <script type="text/javascript" src="{% static 'base/js/Lunbo.js' %}"></script>
+  <script type="text/javascript" src="{% static 'base/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'base/js/HorizontalScroll.js' %}"></script>
+  <script type="text/javascript" src="{% static 'base/js/Public/header.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/Public/header.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/Public/no-response.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">
+
+  {% block bootstrap_core_css %}
+  {% endblock bootstrap_core_css %}
+
+</head>
+
+<!-- <body> -->
+  <!--顶部开始-->
+  <div class="container top-content" style="background-color:white">
+    <div class="row" style="margin-top:12px;">
+      <!--col 1 : logo-->
+        <div class="col-xs-1 col-md-1 col-lg-1" alt="共创园" style="width:178px; height:88px; background:url('{% static 'base/img/index/gcs_logo.jpg' %}') no-repeat center;background-size: cover;"></div>
+        <!-- col 2 : 垂直空白条-->
+        <div class="col-xs-1 col-md-1 col-lg-1" style="width:37px; height:88px;"></div>
+        <!-- col 3-7 : 导航条-->
+        <div class="col-xs-5 col-md-5 col-lg-5" style="min-width:483px;margin-bottom:0px;">
+          <!--顶端空白条-->
+          <div class="row"><div class="col-xs-12 col-md-12 col-lg-12" style="width:100%; height:42px"></div></div>
+          <!-- 导航条正文-->
+          <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12" style="width:100%; height:42px">
+              <ul id="nav_bar" class="nav nav-tabs">
+                <!-- 要在需要高亮的栏目里面增加一个 id="_first" style="color:#FFF;" -->
+                <li class="NLast" {% block home_highlight %} {% endblock %} role="presentation"><a  href="{% url 'home' %}">&nbsp;&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;</a></li>
+                <li class="NLast" {% block SystemArticle_highlight %} {% endblock %}role="presentation"><a href="{% url 'SystemArticle_index' %}">系统文章</a></li>
+                <li class="NLast" {% block ProjectShow_highlight %} {% endblock %}role="presentation"><a href="{% url 'ProjectShow_index' %}">项目展示</a></li>
+                <li class="NLast" {% block Course_highlight %} {% endblock %}role="presentation"><a href="{% url 'Course_index' %}">课程课件</a></li>
+                {% if request.session.user_name %}
+                <li id="_menu" role="presentation"><a href="##"><span><img src="{% static 'base/img/ICON/cog.png' %}" alt="32x32"></span>系统管理</span></a>
+                  <!-- <ul class="dropMenu"> -->
+
+                    <script type="text/javascript">
+                      // value 是 url 的名字,而不是url
+                        document.write('<ul class="dropMenu">');
+                        if (judge({{ request.session.root }}, write_root)) {
+                            document.write('<li><a href="{% url 'SystemArticle_write_article' %}">写系统文章</a></li>');
+                            document.write('<li><a href="{% url 'SystemArticle_write_article' %}">写课程文章</a></li>' );
+                        }
+                        if (judge( {{ request.session.root }}, edit_root_root)) {
+                            document.write('<li><a href="{% url 'edit_root' %}"> 编辑用户权限 </a> </li>');
+                        }
+                        if (judge( {{ request.session.root }}, create_user_root)) {
+                            document.write('<li><a href="{% url 'register' %}"> 开用户 </a> </li>');
+                        }
+
+                        // document.write("<option value = 'project_manage'> 项目管理 </option>");
+                        document.write("</ul>");
+                    </script>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        <!--导航条结束-->
+        </div>
+
+        <!-- col 8: 垂直空白条-->
+        <div class="col-xs-1 col-md-1 col-lg-1" ></div>
+        <!-- col 9-12 : 登陆+搜索-->
+        <div class="col-xs-4 col-md-4 col-lg-4" style="float:right;">
+          <!-- 登陆栏-->
+          {% if request.session.user_name %}
+            <!-- <p> 这里该有一个登出的按钮</p> -->
+            <div class="row" style="background-color:white">
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <div id="team-members" style="background-color:white">
+                  <div id= "vip" style="background-color:white">
+                    <img src="{% static 'base/img/index/Avatar.png' %}" alt="40x40"/>&nbsp;&nbsp;&nbsp;{{request.session.user_name}}
+                  </div>
+                  <div id="_picture" style="background-color:white">
+                    <a href="{% url 'log_out' %}"><img src="{% static 'base/img/index/exit.png' %}" alt="40x40"/></a>
+                    <a href="{% url 'personal_homepage' %}"><img src="{% static 'base/img/index/center.png' %}" alt="40x40"/></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--空白横条-->
+            <div class="row"><div class="col-xs-12 col-md-12 col-lg-12" style="height:10px"></div></div>
+
+          {% else %}
+          <div class="row">
+              <div id="_login" class="col-xs-12 col-md-12 col-lg-12" style="">
+                <form class="form-inline" rol="form" style="float:right" method="post" action="{% url 'login' %}">
+                  {% csrf_token %}
+                  <div id="login" class="form-group" >
+                    <label for="name" display="none"></label>
+                    <input name="user_name" id="name" type="text" class="form-control input-sm" placeholder="用户名"  style="height:24px;"/>
+                    <label for="pass-word" display="none"></label>
+                    <input name="password" type="password" class="form-control input-sm" placeholder="密码" id="pass-word" style="height:24px;"/>
+                    <button id="login_btn" type="submit" style="background:#00a150; border:none; font-size:12px; color:#FFF; width:35px;height:24px; margin-right:-5px;">登陆</button>
+                  </div>
+                  <div style="clear:right"></div> <!--清除危险漂移-->
+                </form>
+              </div>
+          </div>
+          <!--空白横条-->
+          <div class="row"><div class="col-xs-12 col-md-12 col-lg-12" style="height:24px"></div></div>
+          {% endif %}
+
+          <!--搜索框-->
+          <form action="{% url 'fuzzy_search' %}" method="post">
+            {% csrf_token %}
+          <div class="row">
+            <div class="input-group">
+            <input name ="search_item" id="_search_box" type="text" style="height:24px; width:50%; float:right; border-radius: 0px;" class="form-control input-sm" aria-label="请输入关键字"/>
+            <span id="_search_box_button" class="input-group-addon" style="border:none; padding:0px; background:none">
+              <button  type="submit" style="background:url('{% static 'base/img/index/search_logo.jpg' %}') no-repeat center;background-size: cover;"></button>
+            </span>
+            </div>
+          </div>
+          </form>
+          <div style="clear:right"></div>
+        </div>
+    </div>
+  </div>
+  <div class="row" style="border-top:7px solid #00a150;"></div>
+  <!--顶部结束-->
+
+
+<body style="background-color:white">
+
+{% block body %}
+    body
+{% endblock body %}
+
+<!--尾部开始-->
+  <div id="tail" class="tail text-center" >
+    <br/><br/>
+    <div class="row"><div class="col-xs-12 col-md-12 col-lg-12"><h3 style="font-weight:normal">共创社</h3></div></div>
+    <div class="row"><div class="col-xs-12 col-md-12 col-lg-12"><h4 style="font-weight:100; letter-spacing:3px">Co-Innocation Group</h4></div></div>
+    <div class="row"><div class="col-xs-12 col-md-12 col-lg-12"><a href="##">关于我们</a>
+    <label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>
+    <a href="##">联系我们</a>
+    <label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>
+    <a href="##">帮助中心</a>
+    <label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>
+    <a href="##">意见反馈</a></div></div>
+    <br/><br/><br/><br/><br/>
+  </div>
+  <!--尾部结束-->
+  <script type="text/javascript" src='{% static "base/js/Public/jquery.min.js" %}'></script>
+  <script type="text/javascript" src='{% static "base/js/SystemPageJS.js" %}'></script>
+  <script type="text/javascript" src='{% static "base/js/Public/bootstrap.min.js" %}'></script>
+  <!-- <link rel="stylesheet" href="{% static 'base/css/Public/bootstrap.min.css' %}"> -->
+</body>
+</html>

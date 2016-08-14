@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} 共创园 {% endblock %}
+{% block home_highlight %} id="_first" {% endblock %}
+
+{% block body %}
+{% load staticfiles %}
+<!-- <link rel="stylesheet" href="{% static 'base/css/HorizontalScrollstyle.css' %}">
+<link rel="stylesheet" href="{% static 'base/css/jquery.mCustomScrollbar.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/css/Lunbo.css' %}">
+<script type="text/javascript" src="{% static 'base/js/Lunbo.js' %}"></script>
+<script type="text/javascript" src="{% static 'base/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'base/js/HorizontalScroll.js' %}"></script>
+<link rel="stylesheet" href="{% static 'base/css/style.css' %}"> -->
+<!-- 轮播图 -->
+<!-- <p> {{SystemArticle_list[0].get_absolute_url </p> -->
+
+<div id="container" style="height:450px">
+  <div id="list">
+    {% load staticfiles %}
+    {% for article in SystemArticle_list %}
+        <a href="{{article.get_absolute_url}}"><img src="{% static 'base/img/picture/4.png' %}" alt="{{forloop.counter}}"/></a>
+    {% endfor %}
+  </div>
+  <div id="buttons">
+    <span></span>
+    <span class="on"></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <span href="javascript:;" id="prev" class="marrow">&lt;</span>
+  <span href="javascript:;" id="next" class="marrow">&gt;</span>
+</div>
+
+
+<!--主体开始-->
+<div class="container main">
+  <!--最新课程-->
+  <div id="new-class">
+      <!--标题-->
+      <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+          <div class="page-header">
+            <h4>最新课程&nbsp;</h4><img src="{% static 'base/img/index/green.jpg' %}" alt="2x1"/>
+          </div>
+        </div>
+      </div>
+      <!--课程滚条-->
+      <div class="row">
+        <div id="Horizontal-Scroll">
+          <div id="content-1" class="content horizontal-images">
+            <ul>
+
+              {% for course_article in course_list %}
+              <li>
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                  <div class="flipper">
+                    <div class="front">
+                      <img src="{% static 'base/img/picture/JS.jpg' %}" />
+                      <p class="img_under">JS基础学习</p>
+                    </div>
+                    <div class="back">
+                      <h3>{{course_article.title}}</h3>
+                      <p>当鼠标滑过包含块时，元素整体翻转180度，以实现正反面的切换当鼠标滑过包含块时，元素整体翻转180度，以实现正反面的切换</p>
+                      <div class="button_"><a href="{{course_article.get_absolute_url}}">开始学习</a></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!--优秀项目-->
+  <div id="project">
+    <!--标题-->
+    <div class="row" >
+      <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="page-header"><h4>优秀项目&nbsp;</h4><img src="{% static 'base/img/index/green.jpg' %}" alt="2x1"/>
+          <a id="more" href="{% url 'ProjectShow_index' %}"><img src="{% static 'base/img/picture/more.png' %}" alt=""> </a>
+        </div>
+      </div>
+    </div>
+      <!--缩略图链接第一行-->
+      {% for project in project_list %}
+      {% if forloop.counter == 1 %} <div class="row"> {% endif %}
+        <div class="col-xs-3 col-md-3 col-lg-3">
+          <div class="thumbnail">
+            <div class="caption">
+              <p><a href="{{project.get_absolute_url}}" target="_blank"><img src="{% static 'base/img/index/new-class.jpg' %}" alt="14x14">Adobe Pthotoshop cc中文破解版</a></p>
+              <p>09月19日19:00&nbsp;&nbsp;</p>
+            </div>
+          </div>
+        </div>
+      {% if forloop.counter == 4 %} </div> <div class="row"> {% endif %}
+      {% if forloop.counter == 8 %} </div> {% endif %}
+      {% endfor %}
+
+
+      </div>
+  </div>
+</div>
+
+{% endblock %}

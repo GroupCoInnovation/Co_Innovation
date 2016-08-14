@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} {{request.session.user_name}} {% endblock title %}
+{% block body %}
+  <form action = "{% url 'edit_root' %}" method="post">
+    {% csrf_token %}
+    用户名: <input type="text" name="user_name" id="user_name" />
+    <p id="hint"></p>
+    <input type="submit" value="确定" />
+  </form>
+{% endblock body %}

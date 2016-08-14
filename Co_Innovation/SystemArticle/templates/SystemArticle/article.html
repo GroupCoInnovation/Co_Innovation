@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} {{article.title}} {% endblock %}
+
+{% block body %}
+
+{% block bootstrap_core_css %}
+
+{% endblock bootstrap_core_css %}
+
+
+{% load staticfiles %}
+<div class="container">
+  <div class="row mainBox">
+    <div class="leftBox col-xs-8 col-md-8 col-lg-8">
+      <!-- row1 -->
+      <div class="row">
+        <div class="_line1 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/plane.png' %}" alt="14x14"><h2>未来的信息化，就是挖掘企业数据 &nbsp;提升战略决策</h2><h6>2016/08/02 14:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读( 223 ) &nbsp;&nbsp;评论( 13 ) &nbsp;&nbsp;收藏( 10 )</h6></span>
+          <img src="{% static 'base/img/picture/pageL.png' %}" alt="84x84">
+        </div>
+      </div>
+      <!-- row2 -->
+      <div class="row">
+        <div class="_line2 col-xs-12 col-md-12 col-lg-12">
+          <p><img src="{% static 'base/img/picture/L_upper.png' %}" alt="12x12">
+          不少企业在推进信息化进程过程中，会遇到这样的问题：开发效率低；业务需求多样且紧迫、系统多，开发人员学习困难。久而久之就会形成企业的信息数据壁垒，领导不能及时查看企业运营状况。那么该如何解决这类问题呢?<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里分享某企信息化建设的案例。</br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该企的信息化建设经过了基础网络建设、应用开发上线以及面向企业信息化管理几个阶段，从去年开始规划进入创新转型阶段。在信息化进程中针对企业的实际需求也开发了一些相应的软件，包括ERP软件和运营可视化，运营可视化就是通过微软的工具来实现。</p>
+        </div>
+      </div>
+      <!-- row3 -->
+      <div class="row">
+        <div class="_line3 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/grass_bit.png' %}" alt="14x14"/><h3>建设背景</h3></span>
+          <p>当时该企业正面临着一些企业信息化的困惑。第一是开发效率低；第二个数据展示手段少、新手入门难。手头共有六七十个系统。这六七十个系统让给予开发人员的学习压力非常大。后来，FineReport上线之后，新员工培训一周左右就可独立开发，提升了效率，提供了一种完善的展示方法手段，团队的整体开发能力都得到提升。后来还利用FineReport进行了一些行业应用，包括投递管理、经营指标的分析。</p>
+        </div>
+      </div>
+      <!-- row4 -->
+      <div class="row">
+        <div class="_line4 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/grass_bit.png' %}" alt="14x14"/><h3>未来发展</h3></span>
+          <p>该企业目前的信息化建设正逐渐消融业务和技术之间的界限。现在，业务和技术部门之间流动的很多项目成立的时候都是混合型，成立之后把项目做完这个项目组也就解散。<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;未来，在信息化建设方面提出三大展望，“新挑战、新思维、新突破”。未来将计划将打造一个集数据中心、研发中心、运营中心为一体的信息化队伍，在掌握技术的同时还要树立平台思维、数据思维以及融合发展的思维。<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;企业发展包括运营管理应该是以数据驱动为特征的智能化的运营管理体系，比如能不能预测交易高峰或者网点的人员流动或者资源配备是否合理，包括像双十一这种业务高峰期能否保证人员车辆都设置到位，以应对整个突发的事件。<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后是可视化，一个有表现力的图形或者图表能让领导眼前一亮，背后开发的心血可能领导看不到，但是一个非常亮丽的报表尤其是在超越了领导期望的情况下才是信息技术的最高境界。信息部门要在领导下一个需求位置等而不是永远跟在他的需求后面跑，力求创新。
+          </p>
+          <img src="{% static 'base/img/picture/R_down.png' %}" alt="84x84"/>
+        </div>
+      </div>
+      <!-- 灯箱效果 -->
+      <div class="row">
+          <div class="_line5 col-xs-11 col-md-11 col-lg-11">
+            <div class="WraperL">
+              <div class="WraperLBigPic"></div>
+            </div>
+            <div class="WraperR">
+              <div class="WraperRTop">
+                <img id="toTop" src="{% static 'base/img/LightBoxPic/topArrow.png' %}" alt="top">
+              </div>
+              <div class="WraperRMiddle">
+                <div id="list">
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s1.png' %}" alt="s1"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s2.png' %}" alt="s2"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s3.png' %}" alt="s3"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s4.png' %}" alt="s4"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s5.png' %}" alt="s5"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s6.png' %}" alt="s6"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s7.png' %}" alt="s7"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s8.png' %}" alt="s8"></div>
+                  <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s9.png' %}" alt="s9"></div>
+                </div>
+              </div>
+              <div class="WraperRDown">
+                  <img id="toDown" src="{% static 'base/img/LightBoxPic/downArrow.png' %}" alt="down">
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="rightBox col-xs-4 col-md-4 col-lg-4">
+      <div class="rContent">
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+      </div>
+      <div class="hotestPage"><div>最热文章</div></div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
