@@ -3,14 +3,17 @@
 {% block title %} 项目展示 {% endblock %}
 {% block ProjectShow_highlight %} id="_first" {% endblock %}
 
-{%block boostrap_core_css %}
+{% load staticfiles %}
 
-<link rel="stylesheet" href="css/ItemShow.css">
+{% block bootstrap_core_css %}
 
-{% endblock boostrap_core_css %}
+
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'base/css/ItemShow.css' %}">
+
+{% endblock bootstrap_core_css %}
 
 {% block body %}
-{% load staticfiles %}
 <div class="container">
   <div class="row mainBox">
     <div class="leftBox col-xs-8 col-md-8 col-lg-8">
@@ -20,7 +23,7 @@
         <div class="_line col-xs-6 col-md-6 col-lg-6">
           <div class="thumbnail">
             <div class="caption">
-              <p><a href="#" target="_blank"><img src="{% static 'base/img/picture/linux.jpg' %}" alt="14x14"/><span>&nbsp;系统开发&nbsp;</span>&nbsp;基于Linux平台，底层block模块实现数据导入导出功能</a></p>
+              <p><a href="{{project.get_absolute_url}}" target="_blank"><img src="{% static 'base/img/picture/Linux.jpg' %}" alt="14x14"/><span>&nbsp;系统开发&nbsp;</span>&nbsp;基于Linux平台，底层block模块实现数据导入导出功能</a></p>
               <p>在Linux（2.6.32）操作系统中，设备挂载后（如U盘），希望能够对所有涉及该设备的数据引出，然后再次将数据写入盘中。</p>
             </div>
           </div>
@@ -43,6 +46,18 @@
           </ul>
         </div>
       </div>
+
+      <hr/>
+        <a href="?page=1"> 首页 </a>
+        {% if page_project.has_previous %}
+          <a href="?page={{page_project.previous_page_number}}"> 上一页 </a>
+        {% endif %}
+        {% if page_project.has_next %}
+          <a href="?page={{page_project.next_page_number}}"> 下一页纸</a>
+        {% endif %}
+        <a href="?page={{paginator.num_pages}}"> 末页 </a>
+
+      <hr/>
 
     </div>
     <div class="rightBox col-xs-4 col-md-4 col-lg-4">

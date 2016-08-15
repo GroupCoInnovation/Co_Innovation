@@ -17,7 +17,7 @@ def index(request):
             page_project = paginator.page(1)
         except EmptyPage:
             page_project = paginator.page(paginator.num_pages)
-        info = {'page_project':page_project}
+        info = {'page_project':page_project, 'paginator':paginator}
         return render(request, 'ProjectShow/index.html', info)
     except:
         return HttpResponse('error')
