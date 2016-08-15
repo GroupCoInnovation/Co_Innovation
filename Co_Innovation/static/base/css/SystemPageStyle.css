@@ -1,9 +1,42 @@
 .mainBox {
 	margin-top: 20px;
 }
-
+.topBox{
+	margin-top:-20px;
+	background-color: #FFF;
+}
+.topBox ul{
+	list-style: none;
+}
+.topBox ul li{
+	float:left;
+	margin-left:4.3%;
+	margin-right:9.3%;
+	padding:0px;
+	/*border:1px solid #F00;*/
+	width:80px;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+}
+.topBox ul li a{
+	display: block;
+	text-decoration: none;
+	color:#6d6b6b;
+	padding:0px;
+	margin:0px;
+}
+.topBox ul li a:hover{
+	background-color:#00a150; 
+	color: #FFF;
+}
+#_main{
+	background-color:#00a150; 
+	color: #FFF;
+}
 .leftBox {
 	height: 1700px;
+	margin-top:0px;
 	margin-bottom: 20px;
 	border-right: 1px solid #9699A2;
 	border-bottom: none;
@@ -11,9 +44,8 @@
 }
 
 .leftBox  .page_ {
-	margin-top: 22px;
+	margin-top: 15px;
 }
-
 .leftBox .page_ li {
 	list-style: none;
 	height: 170px;
@@ -43,7 +75,7 @@
 	width: 46px;
 	height: 64px;
 	float: left;
-	margin-left: -48px;
+	margin-left: -47px;
 	margin-top: 0px;
 	display: none;
 	padding-top: 1px;
