@@ -3,6 +3,13 @@
 {% block title %} 系统文章 {% endblock %}
 {% block SystemArticle_highlight %} id="_first" {% endblock %}
 
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+ <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">
+{% endblock bootstrap_core_css %}
+
+
+
 {% block body %}
 
 <!--主体开始-->

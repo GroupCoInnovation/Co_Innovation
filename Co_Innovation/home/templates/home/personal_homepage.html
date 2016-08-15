@@ -2,7 +2,8 @@
 {% block title %} {{user.user_name}}主页 {% endblock title %}
 
 {% block bootstrap_core_css %}
-  <link rel="stylesheet" href="css/zoe.css">
+{% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'base/css/zoe.css' %}">
 {% endblock bootstrap_core_css %}
 
 {% block body %}

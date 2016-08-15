@@ -16,12 +16,16 @@
     <script type="text/javascript" src="{% static 'simditor/scripts/hotkeys.js' %}"></script>
     <script type="text/javascript" src="{% static 'simditor/scripts/uploader.js' %}"></script>
     <script type="text/javascript" src="{% static 'simditor/scripts/simditor.js' %}"></script>
-
 {% endblock richtext %}
 
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+ <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">
+{% endblock bootstrap_core_css %}
+
+
 {% block body %}
-
-
 
   <h1>写系统文章</h1>
   <form method = "post" enctype="multipart/form-data" target="_blank" id="art">
