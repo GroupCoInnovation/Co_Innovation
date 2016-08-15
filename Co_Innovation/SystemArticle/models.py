@@ -31,7 +31,7 @@ class Article(models.Model):
         ('SA', '系统文章'),
         ('CA', '课程文章'),
     )
-    cover = models.ImageField('封面图片', upload_to = './user/%Y/%m/%d/', max_length = 100, default = '/static/base/img/picture/pageR.png', blank = True, null = True)
+    cover = models.ImageField('封面图片', upload_to = './article/%Y/%m/%d/', max_length = 100, default = '/static/base/img/picture/pageR.png', blank = True, null = True)
     category = models.CharField('文章类别', choices = shirt_category_choices, max_length = 20, default = 'SA')
     column = models.ForeignKey(Column, verbose_name = '栏目', default = True)
     title = models.CharField('标题', max_length = 100)
@@ -42,7 +42,7 @@ class Article(models.Model):
     update_time = models.DateTimeField('更新时间', auto_now = True)
     content = models.TextField('内容')
     reading_quantity = models.IntegerField('阅读量', default = 0, blank = True)
-    collect = models.IntegerField('收藏', default = 0, blank = True)
+    collection = models.ManyToManyField(User, related_name = 'article_collection', default = True, blank = True)
     top = models.BooleanField('置顶', default = False, blank = True)
     top_time = models.DateTimeField('置顶时间',editable = True) # for thr ordering of the top items
     def __str__(self):

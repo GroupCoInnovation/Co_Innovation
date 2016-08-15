@@ -8,10 +8,10 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ['category','pub_date', 'column']
     search_fields = ['column', 'title']
     fieldsets = [
-        (None, {'fields':[ 'column', 'title', 'pub_user', 'author']}),
+        (None, {'fields':['cover', 'column', 'title', 'pub_user', 'author']}),
         ('摘要', {'fields':['summary'], 'classes':['collapse']}),
         ('time', {'fields':['top_time'], 'classes':['collapse']}),
-        ('content', {'fields':['content', 'reading_quantity', 'collect','top']}),
+        ('content', {'fields':['content', 'reading_quantity', 'collection','top']}),
     ]
 
 class ColumnAdmin(admin.ModelAdmin):

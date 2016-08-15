@@ -1,21 +1,140 @@
 {% extends 'base.html' %}
 {% block title %} {{user.user_name}}主页 {% endblock title %}
 
+{% block bootstrap_core_css %}
+  <link rel="stylesheet" href="css/zoe.css">
+{% endblock bootstrap_core_css %}
+
 {% block body %}
-<h1> {{user.user_name}}</h1>
-<hr/>
-{% for project in project_of_principal %}
-<h3>项目: {{project.project_name}} </h3>
-<h3>项目负责人: {{project.principal.user_name}} </h3>
-<h3>成员:</h3>
-  {% for member in project.members.all %}
-    <li>{{member.user_name}}</li>
-  {% endfor %}
-项目完成情况:
-{% if project.status == 0 %}未完成
-{% elif project.status == 1 %}已完成但未发表文章
-{% else %} 完成且已发表文章
-{% endif %}
-<hr/>
-{% endfor %}
+
+{% load staticfiles %}
+
+<div class="mainbox row">
+  <div id="_list1" class="col-xs-3 col-md-3 col-lg-3">
+    <ul>
+      <li><a href="#">个人信息</a></li>
+      <li><a id="current1" href="#">我的项目</a></li>
+      <li><a href="#">个人收藏</a></li>
+    </ul>
+  </div>
+  <div id="_list2" class="col-xs-1 col-md-1 col-lg-1">
+    <ul>
+      <li id="current2"><a href="##">未完成</a></li>
+      <li><a href="##">已完成</a></li>
+    </ul>
+  </div>
+  <div id="rightbox" class="col-xs-8 col-md-8 col-lg-8">
+      <div class="row">
+        <div class="_list3 NotDone col-xs-10 col-md-10 col-lg-10">
+          <h3>JAVA分布式架构</h3>
+          <p>使用Maven对项目进行模块化管理，提高项目的易开发性、扩展性。<br/>系统包括两个模块：系统管理模块、调度管理模块、Web展示模块。</p>
+          <p class="time">开始时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.10</p>
+          <br/>
+          <p class="time">结束时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.26</p>
+          <br/>
+          <div class="row" id="member">
+            <p>我的伙伴</p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="leader"><img src="{% static 'base/img/picture/p1.png' %}"/><p>卖女孩的小蘑菇</p><p>项目负责人</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>小魔仙</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>玛丽苏</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>肥猪流</p><p>前端工程师</p></div>
+          </div>
+          <div class="money">
+            <p id="num">35%</p>
+            <p>我所获得金币数占</p>
+            <img id="_box" src="{% static 'base/img/picture/box.png' %}"/></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="_list3 NotDone col-xs-10 col-md-10 col-lg-10">
+          <h3>JAVA分布式架构</h3>
+          <p>使用Maven对项目进行模块化管理，提高项目的易开发性、扩展性。<br/>系统包括两个模块：系统管理模块、调度管理模块、Web展示模块。</p>
+          <p class="time">开始时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.10</p>
+          <br/>
+          <p class="time">结束时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.26</p>
+          <br/>
+          <div class="row" id="member">
+            <p>我的伙伴</p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="leader"><img src="{% static 'base/img/picture/p1.png' %}"/><p>卖女孩的小蘑菇</p><p>项目负责人</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>小魔仙</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>玛丽苏</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>肥猪流</p><p>前端工程师</p></div>
+          </div>
+          <div class="money">
+            <p id="num">35%</p>
+            <p>我所获得金币数占</p>
+            <img id="_box" src="{% static 'base/img/picture/box.png' %}"/></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="_list3 NotDone col-xs-10 col-md-10 col-lg-10">
+          <h3>JAVA分布式架构</h3>
+          <p>使用Maven对项目进行模块化管理，提高项目的易开发性、扩展性。<br/>系统包括两个模块：系统管理模块、调度管理模块、Web展示模块。</p>
+          <p class="time">开始时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.10</p>
+          <br/>
+          <p class="time">结束时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.26</p>
+          <br/>
+          <div class="row" id="member">
+            <p>我的伙伴</p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="leader"><img src="{% static 'base/img/picture/p1.png' %}"/><p>卖女孩的小蘑菇</p><p>项目负责人</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>小魔仙</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>玛丽苏</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>肥猪流</p><p>前端工程师</p></div>
+          </div>
+          <div class="money">
+            <p id="num">35%</p>
+            <p>我所获得金币数占</p>
+            <img id="_box" src="{% static 'base/img/picture/box.png' %}"/></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="_list3 NotDone col-xs-10 col-md-10 col-lg-10">
+          <h3>JAVA分布式架构</h3>
+          <p>使用Maven对项目进行模块化管理，提高项目的易开发性、扩展性。<br/>系统包括两个模块：系统管理模块、调度管理模块、Web展示模块。</p>
+          <p class="time">开始时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.10</p>
+          <br/>
+          <p class="time">结束时间</p>
+          <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016.8.26</p>
+          <br/>
+          <div class="row" id="member">
+            <p>我的伙伴</p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="leader"><img src="{% static 'base/img/picture/p1.png' %}"/><p>卖女孩的小蘑菇</p><p>项目负责人</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>小魔仙</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>玛丽苏</p><p>前端工程师</p></div>
+            <div><img src="{% static 'base/img/picture/p1.png' %}"/><p>肥猪流</p><p>前端工程师</p></div>
+          </div>
+          <div class="money">
+            <p id="num">35%</p>
+            <p>我所获得金币数占</p>
+            <img id="_box" src="{% static 'base/img/picture/box.png' %}"/></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="_list4 col-xs-10 col-md-10 col-lg-10">
+          <ul class="Pagination_">
+            <li><a href="#" alt="1">&lt;</a></li>
+            <li><a href="#" alt="2">1</a></li>
+            <li><a href="#" alt="3">2</a></li>
+            <li><a href="#" alt="4">3</a></li>
+            <li><a href="#" alt="5">4</a></li>
+            <li><a href="#" alt="6">5</a></li>
+            <li><a href="#" alt="6">6</a></li>
+            <li><a href="#" alt="7">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+
 {% endblock body %}

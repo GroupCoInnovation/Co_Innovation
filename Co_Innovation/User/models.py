@@ -10,6 +10,7 @@ def encry_password(password):
 
 @python_2_unicode_compatible
 class User(models.Model):
+    head_image = models.ImageField('头像', upload_to = './user/%Y/%m/%d/', max_length = 100, default = '/static/base/img/index/Avatar.png', blank = True, null = True)
     user_name = models.CharField('用户名', max_length = 100)
     password = models.CharField('密码', max_length = 100, default = encry_password('123456'))
     # bit: (编辑权限)(开用户)(置顶)(编辑文章)(写文章)(超级用户) 000000

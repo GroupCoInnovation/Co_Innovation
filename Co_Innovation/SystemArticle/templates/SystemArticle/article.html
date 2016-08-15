@@ -16,8 +16,8 @@
       <!-- row1 -->
       <div class="row">
         <div class="_line1 col-xs-12 col-md-12 col-lg-12">
-          <span><img src="{% static 'base/img/picture/plane.png' %}" alt="14x14"><h2>未来的信息化，就是挖掘企业数据 &nbsp;提升战略决策</h2><h6>2016/08/02 14:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读( 223 ) &nbsp;&nbsp;评论( 13 ) &nbsp;&nbsp;收藏( 10 )</h6></span>
-          <img src="{% static 'base/img/picture/pageL.png' %}" alt="84x84">
+          <span><img src="{% static 'base/img/picture/plane.png' %}" alt="14x14"><h2>未来的信息化，就是挖掘企业数据 &nbsp;提升战略决策</h2><h6>2016/08/02 14:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读( {{article.reading_quantity}} ) &nbsp;&nbsp;评论( 13 ) &nbsp;&nbsp;收藏( {{article.collection.count}} )</h6></span>
+          <img src="{{article.cover.url}}" alt="84x84">
         </div>
       </div>
       <!-- row2 -->
