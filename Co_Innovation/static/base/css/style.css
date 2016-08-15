@@ -31,7 +31,8 @@
 	color:#000; text-decoration:none;
 }
 .caption p:nth-child(2){
-	text-align:right; color:#979797;
+	text-align:right;
+	 /*color:#979797;*/
 }
 #more{
 	position:absolute;
@@ -40,5 +41,3 @@
 	height:16px;
 	width:16px;
 }
-
-

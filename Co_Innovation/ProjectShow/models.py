@@ -13,6 +13,7 @@ class Project(models.Model):
         (1, '已完成未发表'),
         (2, '完成并发表'),
     )
+    cover = models.ImageField('封面图片',upload_to = './project/', max_length = 100, default = '/static/base/img/index/new-class.jpg')
     project_name = models.CharField('项目名称', max_length = 100, default = '项目文章')
     project_intro = models.TextField('项目概述', default = '项目概述')
     principal = models.ForeignKey(User, related_name = 'principal_project_set', verbose_name = '负责人')

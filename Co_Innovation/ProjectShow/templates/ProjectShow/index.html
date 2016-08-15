@@ -2,11 +2,62 @@
 {% extends "base.html" %}
 {% block title %} 项目展示 {% endblock %}
 {% block ProjectShow_highlight %} id="_first" {% endblock %}
-{% block body %}
 
-<h1>项目:</h1>
-{% for project in project_list %}
-  <a href="{{project.get_absolute_url}}"> {{project.project_name}} </a> <br/>
-{% endfor %}
+{%block boostrap_core_css %}
+
+<link rel="stylesheet" href="css/ItemShow.css">
+
+{% endblock boostrap_core_css %}
+
+{% block body %}
+{% load staticfiles %}
+<div class="container">
+  <div class="row mainBox">
+    <div class="leftBox col-xs-8 col-md-8 col-lg-8">
+      <!-- 缩略图 row1 -->
+      <div class="row">
+        {% for project in page_project %}
+        <div class="_line col-xs-6 col-md-6 col-lg-6">
+          <div class="thumbnail">
+            <div class="caption">
+              <p><a href="#" target="_blank"><img src="{% static 'base/img/picture/linux.jpg' %}" alt="14x14"/><span>&nbsp;系统开发&nbsp;</span>&nbsp;基于Linux平台，底层block模块实现数据导入导出功能</a></p>
+              <p>在Linux（2.6.32）操作系统中，设备挂载后（如U盘），希望能够对所有涉及该设备的数据引出，然后再次将数据写入盘中。</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- 页码 -->
+      <div class="row">
+        <div class="_line col-xs-12 col-md-12 col-lg-12">
+          <ul class="Pagination_">
+            <li><a href="#" alt="1">&lt;</a></li>
+            <li><a href="#" alt="2">1</a></li>
+            <li><a href="#" alt="3">2</a></li>
+            <li><a href="#" alt="4">3</a></li>
+            <li><a href="#" alt="5">4</a></li>
+            <li><a href="#" alt="6">5</a></li>
+            <li><a href="#" alt="6">6</a></li>
+            <li><a href="#" alt="7">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="rightBox col-xs-4 col-md-4 col-lg-4">
+      <div class="rContent">
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+      </div>
+      <div class="hotestPage"><div>最热文章</div></div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}

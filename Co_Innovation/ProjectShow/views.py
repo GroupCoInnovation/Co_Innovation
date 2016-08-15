@@ -2,15 +2,25 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from ProjectShow.models import Project, Task
 from User.models import User
+from django.core.paginator import *
+
 # Create your views here.
 def index(request):
     request.session['current_path'] = request.path
     try:
-        project_list = Project.objects.filter(status = 0)
-        info = {'project_list':project_list}
+        project_list = Project.objects.all()
+        paginator = Paginator(project_list, 8)
+        page = request.GET.get('page', 1)
+        try:
+            page_project = paginator.page(page)
+        except PageNotAnInteger:
+            page_project = paginator.page(1)
+        except EmptyPage:
+            page_project = paginator.page(paginator.num_pages)
+        info = {'page_project':page_project}
+        return render(request, 'ProjectShow/index.html', info)
     except:
         return HttpResponse('error')
-    return render(request, 'ProjectShow/index.html', info)
 
 
 def project_manage(request):
