@@ -1,4 +1,8 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% block title %} 课程课件 {% endblock %}
-{% block body %} 待进一步完善 {% endblock %}
+{% block body %}
+  {% for course in course_list %}
+   <p> {{course.title}} </p>
+  {% endfor %}
+ {% endblock %}

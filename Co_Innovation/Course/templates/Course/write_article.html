@@ -27,7 +27,7 @@
 
 {% block body %}
 
-  <h1>写系统文章</h1>
+  <h1>课程文章</h1>
   <form method = "post" enctype="multipart/form-data" id="art">
     {% csrf_token %}
       栏目:
@@ -41,7 +41,8 @@
       <input type="file" name = "cover_image" value="{% static 'base/img/picture/pageR.png' %}"/>
       <p>标题:</p>
       <input type = "text" name = "title"/> <br/>
-      <input type="hidden" name="summary" />
+      <p>摘要: </p>
+      <input type="text" name="summary" /> <br/>
       <p> 内容:</p>
         <textarea id="editor01" name="content"  wrap="hard" style=" width: 1000px; height: 600px;"> </textarea>
             <script>
@@ -56,7 +57,7 @@
             });
             </script>
       <br/>
-      <input type = "submit" value = "提交" id = "SystemArticle_submit_art"/>
-      <input type = "submit" value = "预览" id = "SystemArticle_preview_art" />
+      <input type = "submit" value = "提交" id = "Course_submit_art"/>
+      <input type = "submit" value = "预览" id = "Course_preview_art" />
   </form>
 {% endblock body %}

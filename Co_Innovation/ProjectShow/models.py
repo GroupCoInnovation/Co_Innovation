@@ -21,6 +21,8 @@ class Project(models.Model):
     status = models.IntegerField('状态', default = 0, choices = shirt_status_choices)
     start_time = models.DateTimeField('开始时间',auto_now_add = True,editable = True)
     deadline = models.DateTimeField('截止时间', auto_now = True, null = True)
+    collection = models.ManyToManyField(User, verbose_name = '收藏', related_name = 'project_collection', default = True, blank = True)
+    reading_quantity = models.IntegerField('阅读量', default= 0, blank = True)
     def __str__(self):
         return self.project_name
     def get_absolute_url(self):

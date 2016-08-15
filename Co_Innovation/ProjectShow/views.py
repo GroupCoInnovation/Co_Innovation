@@ -41,6 +41,8 @@ def project_detail(request, project_id):
     request.session['current_path'] = request.path
     try:
         project = Project.objects.get(id = project_id)
+        project.reading_quantity += 1;
+        project.save()
         task_list = project.task_set.all()
         info = {'project': project, 'task_list':task_list}
         return render(request, 'ProjectShow/project_detail.html', info)

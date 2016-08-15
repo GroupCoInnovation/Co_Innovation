@@ -128,16 +128,17 @@ def edit_article(request, article_id):
 
 @csrf_exempt
 def preview(request):
-
+    cover = request.FILES['cover_image']
     column_name = request.POST['column_name']
     content = request.POST['content']
     title = request.POST['title']
     summary = request.POST['summary']
     article = Article()
     article.column = Column.objects.get(column_name=column_name)
-    article.title, article.content = title, content
+    article.cover,article.title, article.content = cover, title, content
     article.top_time = datetime.datetime.now()
     article.pub_date = datetime.datetime.now()
+    article.save()
+    article.delete()
     info = {'article': article}
-
     return render(request, 'SystemArticle/preview.html', info)

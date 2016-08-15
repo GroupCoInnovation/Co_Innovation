@@ -17,5 +17,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from . import views
 urlpatterns = [
-    url(r'^index$', views.index, name = 'Course_index'),
+    url(r'^index$', 'Course.views.index', name = 'Course_index'),
+    url(r'^write_article$', 'Course.views.write_article', name = 'Course_write_article'),
+    url(r'^preview$', 'Course.views.preview', name = 'Course_preview'),
 ]
