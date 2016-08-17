@@ -2,7 +2,14 @@
 {% extends "base.html" %}
 {% block title %} 课程课件 {% endblock %}
 {% block body %}
-  {% for course in course_list %}
-   <p> {{course.title}} </p>
+  {% for course in page_course %}
+   <p><a href="{{course.get_absolute_url}}"> {{course.title}} </a></p>
   {% endfor %}
- {% endblock %}
+
+  <hr/>
+  当前页:{{page_course.number}} &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="?page=1"> 首页上 </a> &nbsp;&nbsp;
+  {% if page_course.has_previous %} <a href="?page={{page_course.prevoius_page_number}}" > 上一页 </a> &nbsp;&nbsp; {% endif %}
+  {% if page_course.has_next %} <a href="?page={{page_course.next_page_number}}" > 下一页 </a> &nbsp;&nbsp; {% endif %}
+  <a href="?page={{paginator.num_pages}}"> 末页 </a>
+ {% endblock body %}

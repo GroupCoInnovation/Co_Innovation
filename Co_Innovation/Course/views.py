@@ -5,17 +5,27 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from SystemArticle.models import Article, Column
-import datetime
 from Course.models import Course
+from django.core.paginator import *
+import datetime
 # Create your views here.
 
 def index(request):
-    # return render(request, 'Course/index.html')
-    # return HttpResponse('Course home')
-    course_list = Course.objects.all()
-    info = {'course_list':course_list}
     request.session['current_path'] = request.path
-    return render(request, 'Course/index.html', info)
+    try:
+        course_list = Course.objects.all()
+        paginator = Paginator(course_list, 7)
+        try:
+            page = request.GET.get('page', 1)
+            page_course = paginator.page(page)
+        except PageNotAnInteger:
+            page_course = paginator.page(1)
+        except EmptyPage:
+            page_course = paginator.page(paginator.num_pages)
+        info = {'page_course':page_course, 'paginator':paginator}
+        return render(request, 'Course/index.html', info)
+    except:
+        return HttpResponse('error')
 
 @csrf_exempt
 def write_course(request):
@@ -41,7 +51,7 @@ def course(request, course_id):
     try:
         course = Course.objects.get(pk = course_id)
         info = {'course':course}
-        return render(request, 'Course/coursr_detail.html', info)
+        return render(request, 'Course/course_detail.html', info)
     except:
         return HttpResponse('error')
 

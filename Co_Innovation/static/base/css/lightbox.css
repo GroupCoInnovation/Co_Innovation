@@ -2,12 +2,11 @@
 	margin: 0;
 	padding: 0;
 }
-
 .WraperL {
 	float: left;
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0px 3px 5px 0px rgba(103, 101, 101, 0.75);
-	width: 552px;
+	width: 69%;
 	height: 379px;
 }
 
@@ -20,11 +19,11 @@
 }
 
 .WraperR {
-	float: left;
+	float: right;
 	margin-left: 10px;
-	width: 119px;
+	width: 29%;
+	padding-right:0px;
 	height: 379px;
-	/*border: 1px solid red;*/
 	position: relative;
 }
 
@@ -33,6 +32,7 @@
   width: 118px;
   height: 19px;
   z-index: 16;
+  float:right;
 }
 
 .WraperRTop img, .WraperRDown img {
@@ -42,11 +42,13 @@
 .WraperRDown {
 	position: absolute;
 	bottom: 0;
+	right:0px;
 }
 
 .WraperRMiddle {
 	position: relative;
 	/*三张图片总共的高度需要控制在这个范围之内*/
+	float:right;
 	height: 313px;
 	width: 119px;
 	margin-bottom: 14px;
@@ -66,6 +68,7 @@
 	width: 116px;
 	height: 83px;
 	margin-bottom: 29px;
+	float: right;
 	/*border: 1px solid blue;*/
 }
 

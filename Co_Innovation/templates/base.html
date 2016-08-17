@@ -30,7 +30,7 @@
                 $("form#art").attr("target","_blank");
             });
             $("#Course_submit_art").click(function(){
-                $("form#art").attr("action","{% url 'Course_write_article' %}");
+                $("form#art").attr("action","{% url 'Course_write_course' %}");
                 $("form#art").attr("target","_self");
             });
             $("#Course_preview_art").click(function(){
@@ -127,7 +127,7 @@
                         document.write('<ul class="dropMenu">');
                         if (judge({{ request.session.root }}, write_root)) {
                             document.write('<li><a href="{% url 'SystemArticle_write_article' %}">写系统文章</a></li>');
-                            document.write('<li><a href="{% url 'Course_write_article' %}">写课程文章</a></li>' );
+                            document.write('<li><a href="{% url 'Course_write_course' %}">写课程文章</a></li>' );
                         }
                         if (judge( {{ request.session.root }}, edit_root_root)) {
                             document.write('<li><a href="{% url 'edit_root' %}"> 编辑用户权限 </a> </li>');
