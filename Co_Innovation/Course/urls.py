@@ -18,6 +18,7 @@ from django.conf.urls import include, url
 from . import views
 urlpatterns = [
     url(r'^index$', 'Course.views.index', name = 'Course_index'),
-    url(r'^write_article$', 'Course.views.write_article', name = 'Course_write_article'),
+    url(r'^write_article$', 'Course.views.write_course', name = 'Course_write_course'),
     url(r'^preview$', 'Course.views.preview', name = 'Course_preview'),
+    url(r'^course/(?P<article_id>[0-9]+)$', 'Course.views.course', name = 'Course_course'),
 ]

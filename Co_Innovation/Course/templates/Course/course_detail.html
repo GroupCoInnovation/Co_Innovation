@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %} {{course.title}} {% endblock title %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'base/css/CourseDetail.css' %}">
+{% endblock %}
+
+{% block body %}
+{% load staticfiles %}
+<div class="container">
+  <div class="row mainBox">
+    <div class="leftBox col-xs-8 col-md-8 col-lg-8">
+      <!-- row1 -->
+      <div class="row">
+        <div class="_line1 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/pencil.png' %}" alt="14x14"/><h2>Python数据挖掘实战</h2></span>
+          <p>Python数据挖掘实战，简单、实用的Python数据挖掘视频教程。</p>
+          <p>主要介绍Python在数据处理、挖掘方面的实战方法技巧。</p>
+          <div class="_place"><img src="{% static 'base/img/picture/green_bit.png' %}" alt="14x1"/><h4>时间：2016.8.8 18:00</h4></div>
+          <div class="_place"><img src="{% static 'base/img/picture/green_bit.png' %}" alt="14x1"/><h4>地点：公教楼D302</h4></div>
+          <div class="pageBottom">
+            <span>收藏( 11 )</span>
+            <span>评论( 12 )</span>
+            <span>阅读( 112 )</span>
+          </div>
+        </div>
+      </div>
+      <!-- row2 -->
+      <div class="row">
+        <div class="_line2 col-xs-11 col-md-11 col-lg-11">
+          <span><img src="{% static 'base/img/picture/bit.png' %}" alt="14x14"/><h3>课程概述</h3></span>
+          <p>Python数据挖掘实战，简单、实用的Python数据挖掘视频教程。</p>
+          <p>主要介绍Python在数据处理、挖掘方面的实战方法技巧。</p>
+          <p>Python数据挖掘实战，简单、实用的Python数据挖掘视频教程。</p>
+          <p>主要介绍Python在数据处理、挖掘方面的实战方法技巧。</p>
+          <span><img src="{% static 'base/img/picture/bit.png' %}" alt="14x14"/><h3>课件下载</h3></span>
+          <p><a href="http://study.163.com/course/introduction/1002827011.htm#/courseDetail">http://study.163.com/course/introduction/1002827011.htm#/courseDetail</a></p>
+        </div>
+      </div>
+      <!-- 灯箱效果 -->
+      <div class="row">
+          <div class="_line3 col-xs-11 col-md-11 col-lg-11">
+      <div class="WraperL">
+          <div class="WraperLBigPic"></div>
+      </div>
+      <div class="WraperR">
+          <div class="WraperRTop">
+            <img id="toTop" src="{% static 'base/img/LightBoxPic/topArrow.png' %}" alt="top">
+          </div>
+        <div class="WraperRMiddle">
+            <div id="list">
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s1.png' %}" alt="s1"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s2.png' %}" alt="s2"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s3.png' %}" alt="s3"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s4.png' %}" alt="s4"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s5.png' %}" alt="s5"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s6.png' %}" alt="s6"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s7.png' %}" alt="s7"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s8.png' %}" alt="s8"></div>
+              <div class="prePic"><img src="{% static 'base/img/LightBoxPic/s9.png' %}" alt="s9"></div>
+            </div>
+          </div>
+        <div class="WraperRDown">
+            <img id="toDown" src="{% static 'base/img/LightBoxPic/downArrow.png' %}" alt="down">
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- 按钮 -->
+  <div class="row">
+          <div class="_line4 col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+            <div id="like"><img src="{% static 'base/img/picture/smile.png' %}">喜欢</div>
+          <div id="dislike"><img src="{% static 'base/img/picture/sad.png' %}">不喜欢</div>
+    </div>
+      </div>
+    </div>
+    <div class="rightBox col-xs-4 col-md-4 col-lg-4">
+      <div class="rContent">
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+      </div>
+      <div class="hotestPage"><div>最热文章</div></div>
+    </div>
+  </div>
+</div>
+{% block body %}

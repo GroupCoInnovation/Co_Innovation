@@ -41,10 +41,8 @@
       <input type="file" name = "cover_image" value="{% static 'base/img/picture/pageR.png' %}"/>
       <p>标题:</p>
       <input type = "text" name = "title"/> <br/>
-      <p>摘要: </p>
-      <input type="text" name="summary" /> <br/>
-      <p> 内容:</p>
-        <textarea id="editor01" name="content"  wrap="hard" style=" width: 1000px; height: 600px;"> </textarea>
+      <p> 概述</p>
+        <textarea id="editor01" name="course_intro"  wrap="hard" style=" width: 1000px; height: 600px;"> </textarea>
             <script>
             var editor01 = new Simditor({
                textarea: $('#editor01'),
