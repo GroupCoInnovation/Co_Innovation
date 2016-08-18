@@ -20,8 +20,8 @@
         <div class="_line col-xs-6 col-md-6 col-lg-6">
           <div class="thumbnail">
             <div class="caption">
-              <p><a href="{{project.get_absolute_url}}" target="_blank"><img src="{% static 'base/img/picture/Linux.jpg' %}" alt="14x14"/><span>&nbsp;系统开发&nbsp;</span>&nbsp;基于Linux平台，底层block模块实现数据导入导出功能</a></p>
-              <p>在Linux（2.6.32）操作系统中，设备挂载后（如U盘），希望能够对所有涉及该设备的数据引出，然后再次将数据写入盘中。</p>
+              <p><a href="{{project.get_absolute_url}}" target="_blank"><img src="{{project.cover.url}}" alt="14x14"/><span>&nbsp;系统开发&nbsp;</span>&nbsp;{{project.project_name}}</a></p>
+              <p>{{project.project_intro}}</p>
             </div>
           </div>
         </div>

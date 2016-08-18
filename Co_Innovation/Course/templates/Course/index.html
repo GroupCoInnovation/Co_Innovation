@@ -5,7 +5,6 @@
   {% for course in page_course %}
    <p><a href="{{course.get_absolute_url}}"> {{course.title}} </a></p>
   {% endfor %}
-
   <hr/>
   当前页:{{page_course.number}} &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="?page=1"> 首页上 </a> &nbsp;&nbsp;

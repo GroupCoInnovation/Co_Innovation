@@ -12,7 +12,7 @@ class Course(models.Model):
     column = models.ForeignKey(Column, verbose_name = '栏目', null = True)
     title = models.CharField('标题', max_length = 100)
     course_intro = models.TextField('课程概述', default = '概述')
-    time = models.DateTimeField('时间', editable = True)
+    time = models.DateTimeField('时间', editable = True, null = True)
     place = models.CharField('地点', max_length = 100, default = '地点')
     def __str__(self):
         return self.title
