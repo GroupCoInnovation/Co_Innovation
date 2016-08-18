@@ -16,19 +16,17 @@
     <script type="text/javascript" src="{% static 'simditor/scripts/hotkeys.js' %}"></script>
     <script type="text/javascript" src="{% static 'simditor/scripts/uploader.js' %}"></script>
     <script type="text/javascript" src="{% static 'simditor/scripts/simditor.js' %}"></script>
+
 {% endblock richtext %}
-
-
-{% block bootstrap_core_css %}
-{% load staticfiles %}
- <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">
-{% endblock bootstrap_core_css %}
-
 
 {% block body %}
 
+
+
   <h1>写系统文章</h1>
-  <form method = "post" enctype="multipart/form-data" id="art">
+  <h1><a href="{% url 'SystemArticle_show_upload_file' %}">upload_file</a></h1>
+  <!-- <h1><a href="{% url 'SystemArticle_index' %}">upload_file</a></h1> -->
+  <form method = "post" enctype="multipart/form-data" target="_blank" id="art">
     {% csrf_token %}
       栏目:
       <select name="column_name">
@@ -38,7 +36,8 @@
       </select>
       <br/>
       <p>封面:</p>
-      <input type="file" name = "cover_image" value="{% static 'base/img/picture/pageR.png' %}"/>
+      <input type="file" id ="cover_image_content" name = "cover_image" value="{% static 'base/img/picture/pageR.png' %}"/>
+      <image id = "coverimage" src="{% static 'base/img/picture/pageR.png' %}" ></image>
       <p>标题:</p>
       <input type = "text" name = "title"/> <br/>
       <input type="hidden" name="summary" />
@@ -50,7 +49,7 @@
                 placeholder : '这里输入内容...',
                 toolbar : toolbar,  //工具栏
                 upload : {
-                    url : '{% url 'file_upload' %}', //文件上传的接口地址 url of name'file_upload' settle the upload process
+                    url : '{% url 'simditor_file_upload' %}', //文件上传的接口地址 url of name'file_upload' settle the upload process
                     fileKey: 'fileData', //服务器端获取文件数据的参数名
                 }
             });

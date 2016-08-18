@@ -142,3 +142,36 @@ def preview(request):
     article.delete()
     info = {'article': article}
     return render(request, 'SystemArticle/preview.html', info)
+
+
+def show_upload_file(request):
+    return render(request, 'SystemArticle/upload_file.html')
+
+@csrf_exempt
+def upload_file(request):
+
+    file = request.POST['file']
+    today = datetime.datetime.today()
+    file_dir = settings.MEDIA_ROOT + '/%d/%d/%d/' % (today.year, today.month, today.day)
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+
+    filename = file[12:]
+    file_path = file_dir + filename
+
+    upload_url = settings.MEDIA_URL + '%d/%d/%d/'%(today.year, today.month, today.day) + filename
+    try:
+        open(file_path, 'wb+').write(file.read())  # 上传文件
+        return HttpResponse(upload_url)
+    except:
+        return HttpResponse(upload_url)
+
+
+
+
+
+
+
+
+
+

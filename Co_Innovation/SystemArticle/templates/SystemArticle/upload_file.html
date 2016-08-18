@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block body %}
+	
+	<div class="container" style="height:600px">
+		<br>
+		<br>
+		<br>	
+		<br>	
+		<br>	
+		<br>	
+		<br>
+
+
+		 <form enctype="multipart/form-data" id = 'uploadForm'>
+    		{% csrf_token %}
+    		<input type="file" id="fileData" name="fileData">
+    		<button id = "upload" type="button">upload</button>
+		</form>
+
+		您上传的文件链接为: <a id="state" href=""></a>
+    </div>
+{% endblock %}
+</html>

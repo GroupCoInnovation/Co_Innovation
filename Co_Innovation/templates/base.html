@@ -47,6 +47,41 @@
                 add.css( "display",'none');
                 ms.css("display",'block');
             });
+
+            $('#cover_image_content').change(function() {
+              alert('here');
+              $('#coverimage').attr('src', $('#cover_image_content').val() );
+            });//未完工
+            
+            $('#upload').click(function(){
+                var file = $('#fileData').val();
+                //var fileName = 
+                //alert(123);
+                $.ajax({
+                      type: 'POST',
+                      url:"{% url 'SystemArticle_upload_file' %}",//服务器端程序
+                      //secureuri:false,
+                      //fileKey: 'fileData',
+                      data:{'file':file}, 
+                      fileElementId:'fileData',//input框的ID
+                      //dataType: 'json',//返回数据类型
+
+                      beforeSend:function(){//上传前需要处理的工作，如显示Loading...
+                        //alert('loading');
+                      },
+                      success: function (upload_info){//上传成功
+                          alert('success');
+                          alert(upload_info);
+                          $('#state').html(upload_info);
+                          $('#state').attr('href' ,upload_info);
+                      },
+                      error: function(upload_info, errorThrown) {
+                          alert('error');
+
+                      }
+                });
+            });
+
           });
       </script>
   {% endblock%}
