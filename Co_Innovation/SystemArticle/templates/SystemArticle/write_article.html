@@ -92,7 +92,26 @@
             var editor01 = new Simditor({
                textarea: $('#editor01'),
                 placeholder : '这里输入内容...',
-                toolbar : toolbar,  //工具栏
+                toolbar : [
+                  'title',
+                  'bold',
+                  'italic',
+                  'underline',
+                  'strikethrough',
+                  'fontScale',
+                  'color',
+                  'ol',             //# ordered list
+                  'ul',             //# unordered list
+                  'blockquote',
+                  'code',           //# code block
+                  'table',
+                  'link',
+                  'image',
+                  'hr',             //# horizontal ruler
+                  'indent',
+                  'outdent',
+                  'alignment',
+                ],  //工具栏
                 upload : {
                     url : '{% url 'simditor_file_upload' %}', //文件上传的接口地址 url of name'file_upload' settle the upload process
                     fileKey: 'fileData', //服务器端获取文件数据的参数名
