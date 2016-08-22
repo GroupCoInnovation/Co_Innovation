@@ -1,6 +1,5 @@
  // 头像 -  用户状态切换  开始
- (function($){
- $(window).on("load",function(){
+$(document).ready(function(){
 	var ms = $("#vip");
   	var add = $("#_picture");
  	ms.mouseenter(function(){
@@ -12,4 +11,3 @@
 	    ms.css("display",'block');
 	});
 });
- })(jQuery);

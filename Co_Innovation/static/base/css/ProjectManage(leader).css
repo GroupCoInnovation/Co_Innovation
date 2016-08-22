@@ -1,0 +1,369 @@
+@font-face {
+  font-family: 'AgencyFB';
+  src: url('font/AgencyFB.ttf');
+}
+.pm_personal_container {
+  position: relative;
+  height:1630px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../img/projectManage-personal/background.png);
+  z-index: 1;
+  background-color: #eaeaea;
+  margin-bottom: 0px;
+}
+.green_bg_group {
+  width: 100%;
+  background-color: #30b170;
+  position:absolute;
+  top:0px;
+  height:200px;
+  z-index: 2;
+  opacity: 0.6;
+}
+.text_shadow {
+  font-style:oblique;
+  font-size: 46px;
+  color: rgb(227, 215, 215);
+  margin-right:8%;
+  margin-top: 20px;
+  float:right;
+}
+.blank_col{
+  width:6%;
+}
+.main_col{
+  width:88%;
+}
+.response_person {
+  position: absolute;
+  top:-60px;
+  z-index: 3;
+  margin-top:125px;
+}
+.response_person_left{
+  background-color: #FFF;
+  padding:20px 50px 10px 40px;
+  width:67%;
+  height:245px;
+}
+.response_person_left div img{
+  margin-top:-13px;
+  margin-right: 6px;
+}
+.response_person_left span{
+  font-size: 26px;
+}
+.response_person_left p {
+  font-size: 15.5px;
+  color: #000;
+  line-height:30px;
+  text-align:justify; 
+  text-justify:inter-ideograph;
+  margin-left:27px;
+  margin-top:15px;
+  margin-bottom: 50px;
+}
+.leader, .gold_time, .end_project{
+  height:245px;
+  width:11%;
+  text-align: center;
+  padding:0px;
+}
+.leader{
+  background-color: #e6e6e6;
+}
+.leader p:first-child{
+  margin-top:55px;
+  font-size: 17px;
+  color:#33475f;
+}
+.leader p:last-child{
+  margin-top: 15px;
+}
+.gold_time{
+  background-color: #d9d9d9;
+}
+.gold_time .gold_coin{
+  background-color: #d4d4d4;
+  margin:0px;
+  color:#33475f;
+  font-size: 16px;
+}
+.gold_time .gold_coin p:first-child{
+  padding-top:10px;
+}
+.gold_time .gold_coin p:last-child{
+  font-family: 'AgencyFB'!important;
+  padding-bottom:5px;
+  padding-top: 5px;
+  font-size: 22px;
+}
+.gold_time .start_time{
+  background-color: #d9d9d9;
+  margin:0px;
+  color:#33475f;
+}
+.gold_time .start_time p:first-child{
+  padding-top:10px;
+  font-size: 17px;
+}
+.gold_time .start_time p:last-child{
+  font-size: 22px;
+  font-family: 'AgencyFB'!important;
+}
+.end_project{
+  background-color: #cfcfcf;
+  padding:0px;
+}
+.end_project a{
+  display: block;
+  padding-top: 60px;
+  color:#33475f;
+  text-decoration:none;
+  font-size: 17px;
+}
+.end_project a p{
+    margin-top: 25px;
+}
+.task_base {
+  margin-top:45px;
+  height: 34px;
+  line-height: 34px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  z-index: 4;
+}
+.task_base div{
+  padding:0px;
+  font-size: 18.75px;
+  height: 100%;
+  color: #000;
+  text-align: center;
+}
+.task_base div:hover{
+  cursor: pointer;
+}
+#current_task{
+  color: rgb(0, 179, 89);
+}
+.done .add_work, .done .name_member .change_name, .done .name_member .confirm_name{
+  display: none;
+}
+.member_ {
+  height: 205px;
+  background-color: #FFF;
+  z-index: 6;
+  margin-top:13px;
+  position: relative;
+}
+.member_ .delete_member{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  display: none;
+}
+.member_ .tableList .add_work{
+  color:#9acdef;        
+}
+.member_ .tableList .add_work:hover{
+  cursor: pointer;
+}
+.person, .tableList{
+  text-align: center;
+}
+.person{
+  margin-top:38px;
+  line-height: 35px;
+}
+.person div:nth-child(2) p{
+  font-size: 18px;
+}
+.name_member{
+  padding:0px;
+  width:50%;
+  height:20px;
+  line-height: 20px;
+  margin-left:25%;
+  margin-right:25%;
+  margin-top:-13px;
+  position: relative;
+}
+.name_member input{
+  background-color: #00b359;
+  margin:0px;
+  display: inline-block;
+  width:100%;
+  height:20px;
+  background-color: #00b359;
+  border:none;
+  line-height: 20px;
+  font-size:11px;
+  color:#FFF;
+  border-radius: 5px;
+  text-align: center;
+  font-size:12px;
+  color:#FFF;
+}
+.name_member span{
+  font-size:12px;
+  border:1px solid #00b359;
+  color:#00b359;
+  background-color: #FFF;
+  position: absolute;
+  right:-35px;
+  top:1px;
+  width:28px;
+  height:18px;
+  line-height:16px;
+}
+.name_member span:hover{
+  cursor: pointer;
+}
+.name_member .change_name{
+  display: block;
+}
+.name_member .confirm_name{
+  display: none;
+}
+.tableList{
+  margin-top:26px;
+  line-height: 24px;
+}
+.tableList>p:nth-child(1){
+  font-size: 16px;
+  font-weight: bold;
+}
+.work p{
+  position:relative;
+}
+.work p{
+  padding: 0px;
+  width:;
+}
+.no-change:hover .labelWork, .labelWork:hover, .extra:hover+.labelWork{
+  color:#84ccc9;
+  cursor: pointer;
+  border-bottom: 1px solid #84ccc9;
+} 
+.extra{
+  display: none;
+  position:absolute;
+  top:0px;
+  right:-30%;
+  height:19px;
+  min-width:90px;
+  z-index: 1000;
+}
+.no-change:hover .extra, .labelWork:hover + .extra{
+  display: block;
+}
+.extra:hover{
+  display: block;
+}
+.extra a{
+  display: inline-block;
+  border:1px solid #84ccc9;
+  padding:0px;
+  background-color: #FFF;
+  color:#84ccc9;
+  text-decoration: none;
+  height:19px;
+  line-height: 19px;
+}
+.extra a:hover{
+  background-color: #84ccc9;
+  color:#FFF;
+}
+.static_bar{
+  width:70%;
+  height:10px;
+  padding-top:1px;
+  padding-bottom:1px;
+  border:1px solid #000;
+  background-color: #FFF;
+  margin-left: 15%;
+  margin-right:15%;
+  margin-top:62%;
+  border-radius: 5px;
+}
+.progress_bar{
+  margin:0px;
+  padding:0px;
+  width:50%;
+  height:100%;
+  background-color: #000;
+}
+.money_num{
+  color:#a2a2a2;
+  font-size: 12px;
+  text-align: center;
+}
+.add_new_member{
+  margin-top:15px;
+  background-color: #FFF;
+  height:180px;
+  padding-left:5%;
+  line-height: 180px;
+  color:#c9c9c9;
+  font-size: 20px;
+}
+.add_new_member img{
+  width:80px;
+  height: 80px;
+}
+.add_new_member span{
+  margin-left:25px;
+}
+.add_new_member:hover{
+  cursor: pointer;
+}
+.noWork  div:last-child{
+  display: none;
+}
+#tail{
+  position: absolute;
+  z-index: 10;
+  top:1710px;
+  right:0px;
+  left:0px;
+  min-width:1200px;
+}
+.Pagination_ div ul{
+  list-style: none;
+  text-decoration: none;
+  margin:60px 1% 80px 6%;
+}
+.Pagination_ div{
+  padding:0px auto;
+}
+.Pagination_ div ul li {
+  float:left;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  border-radius: 50%;
+  background-color: #d2d2d2;
+  text-align: center;
+  margin-right: 16px;
+  color:#5f5f5f;
+}
+
+.Pagination_ div ul li a {
+  text-decoration: none;
+  color:#5f5f5f;
+  display: block;
+  padding:0px;
+  margin:0px;
+  border-radius: 50%;
+}
+
+.Pagination_ div ul li a:focus{
+  background-color: #01a253;
+  color:#FFF;
+}
+.Pagination_ div ul li:hover, .Pagination_ div ul li:hover a{
+  background-color: #7f7c7c;
+  color:#FFF;
+  cursor:hand;
+}

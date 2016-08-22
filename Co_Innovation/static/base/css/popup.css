@@ -1,0 +1,288 @@
+#goodcover {
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 200%;
+  height: 200%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: 0.50;
+  filter: alpha(opacity=80);
+}
+.endTitle1{
+  width: 305px;
+  height: 40px;
+  line-height: 40px;
+  background-color:#01a253; 
+  color: #FFF;
+  position: absolute;
+  top:0px;
+  left:0px;
+  margin:0px;
+  padding-left:20px;
+  font-size: 18px;
+}
+#code1 {
+  width: 305px;
+  height: 222px;
+  background-color: #fff;
+  padding: 10px;
+  position: absolute;
+  display: none;
+  left: 45%;
+  z-index: 1002;
+}
+.goodtxt1 {
+  position:absolute;
+  text-align: left;
+  top:60px;
+}
+.goodtxt1 p {
+  margin-left: 25px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #000;
+}
+.goodtxt1 img{
+  width:auto;
+  height:25px;
+  margin-left: 15px;
+  margin-top:-10px;
+}
+#yes_or_no1{
+  width:238px;
+  height:30px;
+  position:absolute;
+  left:35px;
+  top:135px;
+  border:1px solid #e0e0e0;
+}
+.close1, .yes1{
+  height:20px;
+  line-height: 20px;
+  width: 60px;
+  border:1px solid #e0e0e0;
+  background-color: #FFF;
+  text-align: center;
+  position:absolute;
+  top:185px;
+}
+.close1{
+  right:33px;
+}
+.yes1{
+  right:105px;
+}
+.close1 a, .yes1 a{
+  text-decoration: none;
+  color:#01a253;
+  display: block;
+  padding:0px;
+}
+.close1 a:hover, .yes1 a:hover{
+  background-color: #01a253;
+  color:#FFF;
+}
+.endTitle2{
+  width: 305px;
+  height: 40px;
+  line-height: 40px;
+  background-color:#01a253; 
+  color: #FFF;
+  position: absolute;
+  top:0px;
+  left:0px;
+  margin:0px;
+  padding-left:20px;
+  font-size: 18px;
+}
+.endTitle2>img{
+  height:23px;
+  width:auto;
+  margin-top:-2.7px;
+}
+#code2{
+  width: 305px;
+  height: 150px;
+  background-color: #fff;
+  padding: 10px;
+  position: absolute;
+  display: none;
+  left: 45%;
+  z-index: 1002;
+}
+.goodtxt2{
+  position:absolute;
+  text-align: left;
+  top:60px;
+}
+.goodtxt2 p {
+  margin-left: 25px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #000;
+}
+.goodtxt2 p span{
+  text-decoration: underline;
+}
+.close2, .yes2{
+  height:20px;
+  line-height: 20px;
+  width: 60px;
+  border:1px solid #e0e0e0;
+  background-color: #FFF;
+  text-align: center;
+  position:absolute;
+  top:105px;
+}
+.close2{
+  right:33px;
+}
+.yes2{
+  right:105px;
+}
+.close2 a, .yes2 a{
+  text-decoration: none;
+  color:#01a253;
+  display: block;
+  padding:0px;
+}
+.close2 a:hover, .yes2 a:hover{
+  background-color: #01a253;
+  color:#FFF;
+}
+.endTitle3{
+  width: 305px;
+  height: 40px;
+  line-height: 40px;
+  background-color:#01a253; 
+  color: #FFF;
+  position: absolute;
+  top:0px;
+  left:0px;
+  margin:0px;
+  padding-left:20px;
+  font-size: 18px;
+}
+.endTitle3>img{
+  height:20px;
+  width:auto;
+  margin-top:-2.3px;
+  margin-left: 1px;
+}
+#code3{
+  width: 305px;
+  height: 170px;
+  background-color: #fff;
+  padding: 10px;
+  position: absolute;
+  display: none;
+  left: 45%;
+  z-index: 1002;
+}
+#ID_input3{
+  width:238px;
+  height:30px;
+  position:absolute;
+  left:35px;
+  top:68px;
+  border:1px solid #e0e0e0;
+}
+.close3, .yes3{
+  height:20px;
+  line-height: 20px;
+  width: 60px;
+  border:1px solid #e0e0e0;
+  background-color: #FFF;
+  text-align: center;
+  position:absolute;
+  top:125px;
+}
+.close3{
+  right:33px;
+}
+.yes3{
+  right:105px;
+}
+.close3 a, .yes3 a{
+  text-decoration: none;
+  color:#01a253;
+  display: block;
+  padding:0px;
+}
+.close3 a:hover, .yes3 a:hover{
+  background-color: #01a253;
+  color:#FFF;
+}
+.endTitle4{
+  width: 370px;
+  height: 40px;
+  line-height: 40px;
+  background-color:#01a253; 
+  color: #FFF;
+  position: absolute;
+  top:0px;
+  left:0px;
+  margin:0px;
+  padding-left:20px;
+  font-size: 18px;
+}
+.endTitle4>img{
+  height:20px;
+  width:auto;
+  margin-top:-2.3px;
+  margin-left: 1px;
+}
+#code4{
+  width: 370px;
+  height: 350px;
+  background-color: #fff;
+  padding: 10px;
+  position: absolute;
+  display: none;
+  left: 45%;
+  z-index: 1002;
+}
+#code4 .input4{
+  position: absolute;
+  top:70px;
+  left:40px;
+}
+#code4 .input4 label{
+  font-weight: normal;
+}
+#code4 .input4 input{
+  height:30px;
+  margin-bottom:30px;
+  width:230px;
+}
+.close4, .yes4{
+  height:20px;
+  line-height: 20px;
+  width: 60px;
+  border:1px solid #e0e0e0;
+  background-color: #FFF;
+  text-align: center;
+  position:absolute;
+  bottom:30px;
+}
+.close4{
+  right:37px;
+}
+.yes4{
+  right:110px;
+}
+.close4 a, .yes4 a{
+  text-decoration: none;
+  color:#01a253;
+  display: block;
+  padding:0px;
+}
+.close4 a:hover, .yes4 a:hover{
+  background-color: #01a253;
+  color:#FFF;
+}
