@@ -6,7 +6,8 @@
         {% load staticfiles %}
         <script type="text/javascript" src='{% static 'scripts/jquery-2.2.0.js'%}'></script>
         <script>
-            $(document).ready(function(){
+        (function($){
+            $(window).on("load",function(){
               $("#user_name").blur(function(){
                 var uname = $("#user_name").val();
                 $.get("{% url 'find_user' %}",{'user_name':uname}, function(ret){
@@ -15,6 +16,7 @@
               });
 
             });
+        })(jQuery);
         </script>
     {% endblock%}
 

@@ -3,6 +3,7 @@
 {% extends 'base.html' %}
 {% block title %} {{request.session.user_name}} {% endblock title %}
 {% block body %}
+
   <h1> {{user.user_name}} </h1>
     <h3>已有权限: </h3>
     <!-- roots_not_change is a list of tuple(root_name, root) -->

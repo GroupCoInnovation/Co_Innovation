@@ -14,75 +14,20 @@
       {% load staticfiles %}
       <script type="text/javascript" src='{% static 'scripts/jquery-2.2.0.js'%}'></script>
       <script>
-          $(document).ready(function(){
-            $("#user_name").blur(function(){
-              var uname = $("#user_name").val();
-              $.get("{% url 'find_user' %}",{'user_name':uname}, function(ret){
-                  $('#hint').html(ret);
-              })
-            });
-            $("#SystemArticle_submit_art").click(function(){
-                $("form#art").attr("action","{% url 'SystemArticle_write_article' %}");
-                $("form#art").attr("target","_self");
-            });
-            $("#SystemArticle_preview_art").click(function(){
-                $("form#art").attr("action","{% url 'SystemArticle_preview' %}");
-                $("form#art").attr("target","_blank");
-            });
-            $("#Course_submit_art").click(function(){
-                $("form#art").attr("action","{% url 'Course_write_course' %}");
-                $("form#art").attr("target","_self");
-            });
-            $("#Course_preview_art").click(function(){
-                $("form#art").attr("action","{% url 'Course_preview' %}");
-                $("form#art").attr("target","_blank");
-            });
-            var ms = $("#vip");
-            var add = $("#_picture");
-            ms.mouseenter(function(){
-                add.css("display",'block');
-                ms.css("display",'none');
-            });
-            add.mouseleave(function(){
-                add.css( "display",'none');
-                ms.css("display",'block');
-            });
-
-            $('#cover_image_content').change(function() {
-              alert('here');
-              $('#coverimage').attr('src', $('#cover_image_content').val() );
-            });//未完工
-            
-            $('#upload').click(function(){
-                var file = $('#fileData').val();
-                //var fileName = 
-                //alert(123);
-                $.ajax({
-                      type: 'POST',
-                      url:"{% url 'SystemArticle_upload_file' %}",//服务器端程序
-                      //secureuri:false,
-                      //fileKey: 'fileData',
-                      data:{'file':file}, 
-                      fileElementId:'fileData',//input框的ID
-                      //dataType: 'json',//返回数据类型
-
-                      beforeSend:function(){//上传前需要处理的工作，如显示Loading...
-                        //alert('loading');
-                      },
-                      success: function (upload_info){//上传成功
-                          alert('success');
-                          alert(upload_info);
-                          $('#state').html(upload_info);
-                          $('#state').attr('href' ,upload_info);
-                      },
-                      error: function(upload_info, errorThrown) {
-                          alert('error');
-
-                      }
-                });
-            });
-
+      (function($){
+          $(window).on("load",function(){
+              var ms = $("#vip");
+              var add = $("#_picture");
+              ms.mouseenter(function(){
+                  add.css("display",'block');
+                  ms.css("display",'none');
+              });
+              add.mouseleave(function(){
+                  add.css( "display",'none');
+                  ms.css("display",'block');
+              });
           });
+      })(jQuery);
       </script>
   {% endblock%}
 
