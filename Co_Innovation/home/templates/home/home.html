@@ -11,7 +11,7 @@
   <div id="list">
     {% load staticfiles %}
     {% for article in SystemArticle_list %}
-        <a href="{{article.get_absolute_url}}"><img src="{% static 'base/img/picture/4.png' %}" alt="{{forloop.counter}}"/></a>
+        <a href="{{article.get_absolute_url}}"><img src="{{article.cover.url}}" alt="{{forloop.counter}}"/></a>
     {% endfor %}
   </div>
   <div id="buttons">
