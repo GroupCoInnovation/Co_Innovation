@@ -103,12 +103,9 @@
     </div>
     <div class="rightBox col-xs-4 col-md-4 col-lg-4">
       <div class="rContent">
-        <p>最新Linux高级运维服务搭建及mysql演练</p>
-        <p>最新Linux高级运维服务搭建及mysql演练</p>
-        <p>最新Linux高级运维服务搭建及mysql演练</p>
-        <p>最新Linux高级运维服务搭建及mysql演练</p>
-        <p>最新Linux高级运维服务搭建及mysql演练</p>
-        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        {% for article in hotest_list %}
+            <p><a href="{{article.get_absolute_url}}">&nbsp;&nbsp;{{article.title}} </a></p>
+        {% endfor %}
       </div>
       <div class="hotestPage"><div>最热文章</div></div>
     </div>

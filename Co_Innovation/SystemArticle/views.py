@@ -14,6 +14,8 @@ def index(request):
     request.session['current_path'] = request.path
     column_list = Column.objects.filter(category = 'SC') # 所有的系统栏目
     article_list = Article.objects.filter(category = 'SA') # 所有的系统文章
+    hotest_list = article_list.order_by('-reading_quantity') #按阅读量排序
+    hotest_list = hotest_list[0:6]
     paginator = Paginator(article_list, 7) #一页七篇文章
     page = request.GET.get('page', 1)  #url后如果没有查询集 ?page=.., 则page=1
     try:
@@ -22,7 +24,8 @@ def index(request):
         page_article = paginator(1)
     except EmptyPage: # 没有此页
         page_article = paginator(paginator.num_page) #取最后一页
-    info = {'column_list':column_list, 'page_article':page_article, 'paginator':paginator}
+
+    info = {'column_list':column_list, 'page_article':page_article, 'paginator':paginator, 'hotest_list': hotest_list}
     return render(request, 'SystemArticle/index.html', info)
 
 @csrf_exempt
@@ -30,10 +33,13 @@ def column(request, column_id):
     request.session['current_path'] = request.path
     column_list = Column.objects.filter(category = 'SC') # 所有的系统栏目
     column = Column.objects.get(pk = column_id)
+
     if column == False:
         return HttpResponse('information Error')
     else :
         article_list = column.article_set.all()
+        hotest_list = article_list.order_by('-reading_quantity')  # 按阅读量排序
+        hotest_list = hotest_list[0:6]
         paginator = Paginator(article_list, 7)
         page = request.GET.get('page', 1)
         try:
@@ -42,8 +48,9 @@ def column(request, column_id):
             page_article = paginator.page(1)
         except EmptyPage:
             page_article = paginator.page(paginator.num_pages)
-        info = {'column_list':column_list ,'column':column, 'page_article':page_article, 'paginator':paginator}
+        info = {'column_list':column_list, 'column':column, 'page_article':page_article, 'paginator':paginator, 'hotest_list': hotest_list}
         return render(request, 'SystemArticle/column.html', info)
+
 
 def top(request, article_id):
     try:
@@ -56,6 +63,7 @@ def top(request, article_id):
     except:
         return HttpResponse('server error')
 
+
 def untop(request, article_id):
     try:
         article = Article.objects.get(id = article_id)
@@ -64,6 +72,7 @@ def untop(request, article_id):
         return HttpResponseRedirect(request.session['current_path'])
     except:
         return HttpResponse('server error')
+
 
 def delete_article(request, article_id):
     try:
@@ -74,16 +83,21 @@ def delete_article(request, article_id):
     except:
         return  HttpResponse('server error')
 
+
 def article(request, article_id):
     request.session['current_path'] = request.path
     article = Article.objects.get(pk = article_id)
+    article_list = Article.objects.filter(category='SA')  # 所有的系统文章
+    hotest_list = article_list.order_by('-reading_quantity')  # 按阅读量排序
+    hotest_list = hotest_list[0:6]
     if article == False:
         return HttpResponse('information error')
     else :
         article.reading_quantity += 1
         article.save()
-        info = {'article':article}
+        info = {'article':article, 'hotest_list': hotest_list}
         return render(request, 'SystemArticle/article.html', info)
+
 
 @csrf_exempt
 def write_article(request):
@@ -106,6 +120,7 @@ def write_article(request):
         article.top_time = datetime.datetime.now()
         article.save()
         return HttpResponseRedirect(reverse('SystemArticle_index'))
+
 
 @csrf_exempt
 def edit_article(request, article_id):
@@ -146,6 +161,7 @@ def preview(request):
 
 def show_upload_file(request):
     return render(request, 'SystemArticle/upload_file.html')
+
 
 @csrf_exempt
 def upload_file(request):
