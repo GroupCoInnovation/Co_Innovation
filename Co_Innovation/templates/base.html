@@ -13,7 +13,12 @@
   {% block script %}
       {% load staticfiles %}
       <script type="text/javascript" src='{% static 'scripts/jquery-2.2.0.js'%}'></script>
-      <script>
+
+  {% endblock%}
+
+
+  {% block javascript %}
+     <script>
       (function($){
           $(window).on("load",function(){
               var ms = $("#vip");
@@ -29,13 +34,9 @@
           });
       })(jQuery);
       </script>
-  {% endblock%}
-
-
-  {% block javascript %}
    <!--用于判断root位的脚本函数  -->
     <script type="text/javascript">
-           var superuser = 1, write_root = 2, edit_article_root = 4;
+           var superuser = 1, write_root = 2, edit_article_root = 4, upload_root = 2;
            var stick_root = 8, create_user_root = 16, edit_root_root = 32;
             function judge(a, b) {
                 if (a & b ) {
@@ -62,7 +63,6 @@
   <link rel="stylesheet" href="{% static 'base/css/jquery.mCustomScrollbar.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'base/css/Lunbo.css' %}">
   <script type="text/javascript" src="{% static 'base/js/Public/ie8.js' %}"></script>
-  <script type="text/javascript" src="{% static 'base/js/Public/jquery.1.10.2.js' %}"></script>
   <script type="text/javascript" src="{% static 'base/js/Lunbo.js' %}"></script>
   <script type="text/javascript" src="{% static 'base/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'base/js/HorizontalScroll.js' %}"></script>
@@ -114,6 +114,9 @@
                         }
                         if (judge( {{ request.session.root }}, create_user_root)) {
                             document.write('<li><a href="{% url 'register' %}"> 开用户 </a> </li>');
+                        }
+                        if (judge( {{ request.session.root }}, upload_root)) {
+                            document.write('<li><a href="{% url 'SystemArticle_show_upload_file' %}"> 上传文件 </a> </li>');
                         }
 
                         // document.write("<option value = 'project_manage'> 项目管理 </option>");
@@ -211,7 +214,6 @@
     <br/><br/><br/><br/><br/>
   </div>
   <!--尾部结束-->
-  <script type="text/javascript" src='{% static "base/js/Public/jquery.min.js" %}'></script>
   <script type="text/javascript" src='{% static "base/js/SystemPageJS.js" %}'></script>
   <script type="text/javascript" src='{% static "base/js/Public/bootstrap.min.js" %}'></script>
   <!-- <link rel="stylesheet" href="{% static 'base/css/Public/bootstrap.min.css' %}"> -->
