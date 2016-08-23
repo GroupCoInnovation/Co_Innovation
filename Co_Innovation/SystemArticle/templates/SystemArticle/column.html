@@ -38,15 +38,18 @@
             <div class="Lhover">
               <script type="text/javascript">
                 // value 是 url 的名字,而不是url
-                  if (judge({{ request.session.root }}, 8)) {
+                  if ( judge( {{ request.session.root }}, 8)) {
+
                       if ("{{article.top}}" == "True") {
+
                         document.write('<p><a href="{% url 'untop' article.id %}"> 取消置顶</a> </p>');
                       }
                       else {
                           document.write('<p><a href="{% url 'top' article.id %}">置顶</a> </p>');
                       }
                   }
-                  if (judge( {{ request.session.root }}, 4)) {
+
+                  if ( judge( {{ request.session.root }}, 4)) {
                       document.write('<p><a href="{% url 'SystemArticle_edit_article' article.id %}"> 编辑 </a> </p>');
                       document.write('<p><a href="{% url 'delete_article' article.id %}"> 删除 </a> </p>');
                   }
@@ -63,7 +66,7 @@
           </div>
           <div class="mContent">
 
-            <h4><a href="{{article.get_absolute_url}}">{{article.title}} </a></h4>
+            <h4><a href="{{article.get_absolute_url}}">&nbsp;&nbsp;{{article.title}} </a></h4>
             <p>作者:{{article.author}}&nbsp;&nbsp;&nbsp;&nbsp;发布者:{{article.pub_user}}</p>
             <div class="pageBottom">
               <span>2016/08/02 14:00</span>
