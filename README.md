@@ -1,12 +1,14 @@
 # Co_Innovation
 
-admin:
-    username:Preke
-    passsword:123456
-    url:/admin
+<br />admin:
+<br />    username:Preke
+<br />    passsword:123456
+<br />    url:/admin
 
-Group:
-    Wangxg
-    Lee
-    preke
-    tiger-BeA
+<br />Group:
+<br />    Wangxg
+<br />    Lee
+<br />    preke
+<br />    tiger-BeA
+
+##Need pillow
