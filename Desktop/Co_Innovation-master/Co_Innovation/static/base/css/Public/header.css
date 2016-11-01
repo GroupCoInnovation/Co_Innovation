@@ -1,0 +1,176 @@
+@-ms-viewport       { width: device-width; }
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+
+*{
+	font-family:'Microsoft YaHei', sans-sarif !important;
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+body{
+	background-color:#FFF;
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+
+#nav_bar{
+	margin-left:-15px;
+	margin-right:-15px;
+	width: 470px;
+}
+#nav_bar li.NLast a{
+	height: 40px;
+	margin-bottom: 0px;
+	color:#000;
+}
+#nav_bar li.NLast a:hover{
+	color:#FFF;
+	background-color:#00a150;
+}
+#_first{	
+	margin:auto 1px; 
+	background-color:#00a150;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+#_first a{
+	color:#FFF!important;
+}
+#_menu{
+	position:relative;
+	color:#00a150;
+	background: none;
+	padding-left:0px;
+}
+#_menu a{
+	color:#00a150;
+}
+#_menu a:hover {
+	color: #00a150;
+}
+
+#_menu .dropMenu li {
+	color:#00a150;
+	text-align: center;
+	height:40px;
+	line-height: 40px;
+	border-bottom: 2px solid #f0f0f0;
+}
+#_menu .dropMenu li a{
+	color:#00a150;
+	text-align: center;
+	text-decoration:none;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	padding:0px;
+	width:105px;
+}
+#_menu .dropMenu li a:hover{
+	color:#FFF;
+	background-color: #00a150;
+	border:none;
+	border-color:#f0f0f0;
+}
+
+#_menu .dropMenu {
+	display: none;
+	z-index:1000;
+	list-style: none;
+	position:absolute;
+	left:0px;
+	right:40px;
+	width:105px;
+	background-color: #FFF;
+	margin-top:-2px;
+}
+#_menu:hover .dropMenu {
+	display: block;
+}
+#_login{
+	padding-left:0px; padding-right:0px;
+}
+#_search_box{
+	border:1px solid #00a150;  
+	height:24px; 
+	width:50%; 
+	float:right; 
+	border-radius: 0px;       
+}
+#_search_box_button{
+	border:none; 
+	padding:0px; 
+	background:none;
+}
+#_search_box_button button{ 
+    cursor:pointer; 
+	width:35px; 
+	height:24px; 
+	border-radius:0px; 
+	vertical-align:middle; 
+	border:none; 
+	display: inline-block;
+}
+#login{
+	min-width:353px;
+	float:right;
+}
+#login input{
+	border-radius: 20px;
+}
+#login input, #login button{
+	height:22px;
+}
+#name, #pass-word{
+	width:150px;
+}
+#tail{
+	background-color: #00a150; 
+	color:#FFF;
+	width:100%;
+}
+#tail a{
+	color:#FFF;
+	font-weight:lighter;
+}
+#team-members{
+	postion:relative;
+	background-color:#FFF; 
+	height:42px;
+}
+#_picture{
+	position:absolute;
+	right:0px;
+	display:none;
+	z-index: 1;
+	background-color:#FFF;
+	padding:0px;
+	margin:0px;
+}
+#_picture a{
+	background-color: #FFF;
+	margin: 0px;
+	float:right;
+}
+#_picture a img{
+	background-color: #FFF;
+	width:55px;
+	height:40px;
+}
+#vip{
+	position:absolute;
+	background-color: #FFF;
+	right:0px;
+	display:block;
+	z-index: 1;
+	padding:0px;
+	margin:0px;
+}
+#vip img{
+	height:40px; 
+	width:40px;
+}

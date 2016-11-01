@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %} {{user.user_name}}主页 {% endblock title %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'base/css/zoe.css' %}">
+{% endblock bootstrap_core_css %}
+
+{% block body %}
+
+{% load staticfiles %}
+
+<div class="mainbox row">
+    <div id="_list1" class="col-xs-3 col-md-3 col-lg-3">
+        <ul>
+            <li><a href="#">个人信息</a></li>
+            <li><a id="current" href="#">我的项目</a></li>
+            <li><a href="#">个人收藏</a></li>
+        </ul>
+    </div>
+    <div id="_list2" class="col-xs-1 col-md-1 col-lg-1">
+        <ul>
+            <li id="not_done"><a href="##">未完成</a></li>
+            <li id="done"><a href="##">已完成</a></li>
+        </ul>
+    </div>
+    <!-- 未完成 -->
+    <div id="rightbox1" class="col-xs-8 col-md-8 col-lg-8">
+        <!--项目 以row为单位添加一个项目栏-->
+        {% for project in project_of_unfinished_list %}
+        <div class="row">
+            <div class="_list3 NotDone col-xs-10 col-md-10 col-lg-10">
+                <div class="row"><img src="{% static 'base/img/picture/circle.png' %}"><h3>{{project.project_name}}<span>未编辑展示文本</span></h3></div>
+                <div class="row item_content"><p>{{project.project_intro}}</p></div>
+                <div class="row"><p class="time">开始时间</p><p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{project.start_time}}</p></div>
+                <div class="row"><p class="time">结束时间</p><p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{project.deadline}}</p></div>
+                <div class="row member">
+                    <div class="col-sm-1 col-md-1 col-lg-1"><p>我的伙伴</p></div>
+                    <div class="col-sm-11 col-md-11 col-lg-11">
+                        <!--项目成员列表 以member_list为单位添加一行新成员-->
+                        <div class="row member_list">
+                            <div class="col-sm-3 col-md-3 col-lg-3 leader"><img src="{{project.principal.head_image.url}}"/><p>{{project.principal.user_name}}</p><p>项目负责人</p></div>
+                            {% for member in project.members.all %}
+                            <div class="col-sm-3 col-md-3 col-lg-3 staff"><img src="{{member.head_image.url}}"/><p>{{member.user_name}}</p><p>前端工程师</p></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="money">
+                    <p class="num">35%</p>
+                    <p>我所获得金币数占</p>
+                    <img class="_box" src="{% static 'base/img/picture/box.png' %}"/></div>
+            </div>
+        </div>
+        {% endfor %}
+        <!--页码-->
+        <!-- <div class="row _list4"> -->
+            <!--<div class="_list4 col-xs-10 col-md-10 col-lg-10">-->
+            <!-- <ul class="Pagination_">
+                <li><a href="#" alt="1">&lt;</a></li>
+                <li><a href="#" alt="2">1</a></li>
+                <li><a href="#" alt="3">2</a></li>
+                <li><a href="#" alt="4">3</a></li>
+                <li><a href="#" alt="5">4</a></li>
+                <li><a href="#" alt="6">5</a></li>
+                <li><a href="#" alt="6">6</a></li>
+                <li><a href="#" alt="7">&gt;</a></li>
+            </ul> -->
+        <!-- </div> -->
+        当前页:{{project_of_unfinished_list.number}} &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="?page=1"> 首页 </a> &nbsp;&nbsp;
+        {% if project_of_unfinished_list.has_previous %} <a href="?page={{project_of_unfinished_list.prevoius_page_number}}" > 上一页 </a> &nbsp;&nbsp; {% endif %}
+        {% if project_of_unfinished_list.has_next %} <a href="?page={{project_of_unfinished_list.next_page_number}}" > 下一页 </a> &nbsp;&nbsp; {% endif %}
+        <a href="?page={{paginator_unfinished.num_pages}}"> 末页 </a>
+
+    </div>
+    <!-- 已完成 -->
+    <div id="rightbox2" class="col-xs-8 col-md-8 col-lg-8">
+        <!--项目 以row为单位添加一个项目栏 NotDone表示未编辑展示文本  Done表示已编辑-->
+        {% for project in project_of_finished %}
+        <div class="row">
+            <div class="_list3 NotDone col-xs-10 col-md-10 col-lg-10">
+                <div class="row"><img src="{% static 'base/img/picture/circle.png' %}"><h3>{{project.project_name}}<span>未编辑展示文本</span></h3></div>
+                <div class="row item_content"><p>{{project.project_intro}}</p></div>
+                <div class="row"><p class="time">开始时间</p><p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{project.start_time}}</p></div>
+                <div class="row"><p class="time">结束时间</p><p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{project.deadline}}</p></div>
+                <div class="row member">
+                    <div class="col-sm-1 col-md-1 col-lg-1"><p>我的伙伴</p></div>
+                    <div class="col-sm-11 col-md-11 col-lg-11">
+                        <div class="row member_list">
+                            <div class="col-sm-3 col-md-3 col-lg-3 leader"><img src="{{project.principal.head_image.url}}"/><p>{{project.principal.user_name}}</p><p>项目负责人</p></div>
+                            {% for member in project.members.all %}
+                            <div class="col-sm-3 col-md-3 col-lg-3 staff"><img src="{{member.head_image.url}}"/><p>{{member.user_name}}</p><p>前端工程师</p></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="money">
+                    <p class="num">35%</p>
+                    <p>我所获得金币数占</p>
+                    <img class="_box" src="{% static 'base/img/picture/box.png' %}"/></div>
+            </div>
+        </div>
+        {% endfor %}
+
+        当前页:{{project_of_finished_list.number}} &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="?page=1"> 首页 </a> &nbsp;&nbsp;
+        {% if project_of_finished_list.has_previous %} <a href="?page={{project_of_finished_list.prevoius_page_number}}" > 上一页 </a> &nbsp;&nbsp; {% endif %}
+        {% if project_of_finished_list.has_next %} <a href="?page={{project_of_finished_list.next_page_number}}" > 下一页 </a> &nbsp;&nbsp; {% endif %}
+        <a href="?page={{paginator_unfinished.num_pages}}"> 末页 </a>
+
+    </div>
+</div>
+<!-- 主体结束 -->
+{% endblock body %}

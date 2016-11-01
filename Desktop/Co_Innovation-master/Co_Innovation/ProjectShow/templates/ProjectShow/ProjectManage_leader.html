@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<head>
+	{% block title %}项目管理（负责人){% endblock %}
+
+
+</head>
+
+<body>
+{% block body %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ProjectShow/css/ProjectManage(leader).css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static 'ProjectShow/css/popup.css'%} ">
+    <script type="text/javascript" src="{% static 'ProjectShow/widget/My97DatePicker/WdatePicker.js'%}"></script>
+	<!-- 主体开始 -->
+	    <!-- 弹窗开始 -->
+		    <div id="goodcover"></div>
+		    <!-- 1. 鼠标点击右上角结束该项目图标  弹窗 -->
+				<div id="code1">
+					<div class="endTitle1">结束项目</div>
+					<div class="goodtxt1">
+					<p>注意：结束项目为不可逆操作,<img src="{% static 'ProjectShow/img/picture/warn.png'%} "/><br/>请输入"确认结束项目"来确认这一操作</p>
+					</div>
+					<label for="yes_or_no1"></label>
+					<input type="text" id="yes_or_no1" name="yes1">
+					<button class="close1"><a href="javascript:void(0)">取消</a></button>
+					<button class="yes1" type="submit" aimTo="{% url 'end_project' project.id %}" id = 'end1'><a href="javascript:void(0)">确认</a></button>
+				</div>
+			<!-- 2. 鼠标点击删除无任务成员  弹窗 -->
+				<div id="code2">
+					<div class="endTitle2">删除成员<img src="{% static 'ProjectShow/img/picture/delete.png' %}"></div>
+					<div class="goodtxt2">
+						<p>确定删除 <input class="member_name2" type="text" name="member_name2" value="程序猿"/> ？</p>
+					</div>
+					<button class="close2"><a href="javascript:void(0)">取消</a></button>
+					<button class="yes2" type="submit"><a href="javascript:void(0)">确认</a></button>
+				</div>
+			<!-- 3. 鼠标点击添加新成员  弹窗 -->
+				<div id="code3">
+					<form action="{% url 'add_member' project.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="endTitle3">添加成员<img src="{% static 'ProjectShow/img/picture/add_mem.png'%}"></div>
+
+                        <input id="ID_input3" name="ID_input3" value="请输入成员ID..." onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999" >
+                        <button class="close3"><a href="javascript:void(0)">取消</a></button>
+                        <input class="yes3" type="submit" value="确认" />
+{#                        <button class="yes3" type="submit">确认</button>#}
+				    </form>
+                </div>
+			<!-- 4. 鼠标点击添加任务  弹窗 -->
+				<div id="code4">
+					<div class="endTitle4">给  <input class="member_name4" type="text" name="member_name4" value="程序猿"/> 添加任务<img src="{% static 'ProjectShow/img/picture/add_mem.png' %}"></div>
+					<form action="{% url 'add_task' project.id  %} " method="post" enctype="multipart/form-data">
+                        <div class="input4">
+                            <input type="hidden" value="" name="name" id="name4">
+                            <label for="Project_name4">任务名称&nbsp;&nbsp;</label>
+                            <input id="Project_name4" type="text" name="task_name" required="required" placeholder="填写任务名称">
+                            <label for="Project_strat4">开始时间&nbsp;&nbsp;</label>
+                            <input id="Project_strat4" class="Wdate" onFocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy.MM.dd HH:mm:ss'})"  name="task_start" required="required" placeholder="选择开始时间">
+                            <label for="Project_end4">截止时间&nbsp;&nbsp;</label>
+                            <input id="Project_end4" class="Wdate" onFocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy.MM.dd HH:mm:ss'})" name="task_end" required="required" placeholder="选择截止时间">
+                            <label for="Project_money4" >&nbsp;&nbsp;金币数&nbsp;&nbsp;&nbsp;</label>
+                            <input id="Project_money4" type="text" name="task_money" required="required" placeholder="金币数至少为0">
+                        </div>
+                        <button class="close4"><a href="javascript:void(0)">取消</a></button>
+                        <input class="yes4" type="submit" value="确认" />
+			        </form>
+                </div>
+			<!-- 5. 鼠标点击签收任务  弹窗-->
+				<div id="code5">
+					<img src="{% static 'ProjectShow/img/projectManage-personal/pet.png' %}"/>
+					<p>确定签收任务？</p>
+					<button class="yes5" type="submit"><a href="javascript:void(0)">确认</a></button>
+					<button class="close5"><a href="javascript:void(0)">取消</a></button>
+				</div>
+			<!-- 6. 鼠标点击修改任务  弹窗-->
+				<div id="code6">				
+					<div class="endTitle6">给 <input class="member_name6" type="text" name="member_name6" value="程序猿"/>修改任务<img src="{% static 'ProjectShow/img/picture/add_mem.png' %}"></div>
+					<div class="input6">
+						<label for="Project_name6">任务名称&nbsp;&nbsp;</label>
+						<input id="Project_name6" type="text" name="Project_name6" required="required" placeholder="填写任务名称">
+						<label for="Project_strat6">开始时间&nbsp;&nbsp;</label>
+						<input id="Project_strat6" class="Wdate" onFocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy.MM.dd HH:mm:ss'})"  name="Project_strat6" required="required" placeholder="选择开始时间">
+						<label for="Project_end6">截止时间&nbsp;&nbsp;</label>
+						<input id="Project_end6" class="Wdate" onFocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy.MM.dd HH:mm:ss'})"  name="Project_end6" required="required" placeholder="选择截止时间">
+						<label for="Project_money6" >&nbsp;&nbsp;金币数&nbsp;&nbsp;&nbsp;</label>
+						<input id="Project_money6" type="text" name="Project_money6" required="required" placeholder="金币数至少为0">
+					</div>
+					<button class="close6"><a href="javascript:void(0)">取消</a></button>
+					<button class="yes6"><a href="javascript:void(0)">确认</a></button>
+				</div>
+				<!-- 7. 鼠标点击删除任务  弹窗-->
+				<div id="code7">
+					<img src="{% static 'ProjectShow/img/projectManage-personal/cry.png' %}"/>
+					<p>确定删除任务？</p>
+					<button class="yes7" type="submit"><a href="javascript:void(0)">确认</a></button>
+					<button class="close7"><a href="javascript:void(0)">取消</a></button>
+				</div>
+		<!-- 弹窗结束 -->
+		<div class="row pm_personal_container">
+			<!-- 背景字 -->
+			<div class="row green_bg_group">
+				<div class="text_shadow">{{ project.project_name }}</div>
+			</div>
+			<div class="row response_person">
+				<!-- 左边空白布局 -->
+					<div class="blank_col col-xs-1 col-md-1 col-lg-1"></div>
+				<!-- 中间正文 -->
+				<div class="main_col col-xs-10 col-md-10 col-lg-10">
+					<!-- 项目简介 -->
+						<div class="row">
+							<div class="response_person_left col-xs-9 col-md-9 col-lg-9">
+						    	<div class="row">
+									<img style="float: left" src="{% static 'ProjectShow/img/projectManage-personal/tuoyuan.png' %}">
+									<input id="titles"value='{{ project.project_name }}' readonly="true"/>
+									<a id="change_text">[编辑]</a>
+									<a id="true_text" style="display: none" aimTo="{% url 'change_project_name_and_intro' project.id %}">[确认]</a>
+								</div>
+								<div class="row">
+									<textarea id="titlebi" readonly="true" style="border: solid 0px;">{{ project.project_intro }}</textarea>
+					    		</div>
+							</div>
+						 	<div class="leader col-xs-1 col-md-1 col-lg-1">
+							  	<p>项目负责人</p>
+						  		<div><img src="{% static 'ProjectShow/img/projectManage-personal/fuzeren.png' %}" alt="touxiang"></div>
+							  	<p>{{ project.principal.user_name }}</p>
+							</div>
+							<div class="gold_time col-xs-1 col-md-1 col-lg-1">
+								<div class="row gold_coin">
+							  		<p>金币</p>
+							  		<div><img src="{% static 'ProjectShow/img/projectManage-personal/money.png' %}" alt="touxiang"></div>
+							  		<p>35</p>
+								</div>
+								<div class="row start_time">
+							  		<p>开始时间</p>
+							  		<p>{{ project.start_time }}</p>
+								</div>
+							</div>
+							<div class="end_project col-xs-1 col-md-1 col-lg-1">
+								<a>
+						  			<div><img src="{% static 'ProjectShow/img/projectManage-personal/hammer.png' %}" alt="touxiang"></div>
+						  			<p>结束该项目</p>
+								</a>
+							</div>
+						</div>
+					<!-- 项目状态：已完成 进行中 -->
+						<div class="row task_base">
+							<div id="current_task" class="col-xs-offset-2 col-xs-4 col-md-offset-2 col-md-4 col-lg-offset-2 col-lg-4">
+								进行中
+							</div>
+							<div id="done_task" class="col-xs-4 col-md-4 col-lg-4">
+								已完成
+							</div>
+							<div class="col-xs-2 col-md-2 col-lg-2"></div>
+						</div>	
+					<!-- 项目成员任务表 -->
+						<!-- 进行中 -->
+							<div class="doing">
+								<!-- member用来固定每行的样式 -->
+								<!-- 其中member_num用来区别成员和添加成员 -->		
+								<!-- .haveWork和.noWork用来区分有有无和无任务,决定是否可以删除成员 -->
+								<!-- .member_i 用于添加任务时来区分彼此-->
+							<!-- 有任务的成员 -->
+                                {% for member,role in member_info_list.items %}
+								    <div class="member_{{ forloop.counter }} row member member_num haveWork">
+{#									{% if member.member_info.worker.all %}#}
+{##}
+{#                                        <h1>哈哈哈</h1>#}
+{#                                    {% endif %}#}
+                                        <div class="delete_member"><img src="{% static 'ProjectShow/img/picture/x.png' %}"></div>
+									<!-- 个人信息 -->
+									  	<div class="person col-xs-2 col-md-2 col-lg-2">
+									      	<div><img src="{% static 'ProjectShow/img/projectManage-personal/head_pic.png' %}"></div>
+									     	<div><input type="text" name="memberID" id="member_name" readonly="true" value=" {{ member.user_name }} "/></div>
+									      	<div class="name_member">
+									      		<form method="post" action="">
+                                                    <input type="text" value="{{ role }}" class="input_name" id="role" readonly="readonly" />
+
+									      		    <span class="change_name">修改</span>
+									      		    <span class="confirm_name">确认</span>
+                                                    <input type="hidden" value="{{ member.user_name }}" id="role_user"/>
+                                                    <input type="hidden" value="{{ project.id }}" id="pid"/>
+									      	    </form>
+                                            </div>
+									  	</div>
+								  	<!-- 任务栏-->
+									  	<div class="col-xs-8 col-md-8 col-lg-8">
+									  		<!-- 表头 不可更改 -->
+												<div class="table_th row">
+													<div class="col-xs-3 col-md-3 col-lg-3">任务名称</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">开始时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">截止时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">金币数</div>
+												</div>
+											<!-- 任务条目可修改 -->
+												{% for task in member.member_info.worker.all %}
+                                                    <div class="workList" href="3">
+                                                        <!-- 任务1 -->
+                                                        <div class="work row">
+                                                            <!-- 任务名称 -->
+                                                                <div class="task col-xs-3 col-md-3 col-lg-3">
+                                                                    <p class="no-change">
+                                                                        <input class="labelWork" value="{{ task.task_name }}" readonly="true">
+                                                                        <span class="extra">
+                                                                            <span class="pass_work">签收</span>
+                                                                            <span class="revamp_work">修改</span>
+                                                                            <span class="delete_work">删除</span>
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                                <!-- 开始时间 -->
+                                                                <div class="start_time col-xs-3 col-md-3 col-lg-3">
+                                                                    <input type="text" name="start_time" value="2016.8.9 15:00"  readonly="true"/>
+                                                                </div>
+                                                                <!-- 截止时间 -->
+                                                                <div class="finish_time col-xs-3 col-md-3 col-lg-3">
+                                                                    <input type="text" name="finish_time" value="2016.8.9 15:00"  readonly="true"/>
+                                                                </div>
+                                                                <!-- 金币数 -->
+                                                                <div class="money_num col-xs-3 col-md-3 col-lg-3">
+                                                                    <input type="text" name="money_num" value="5" readonly="true"/>
+                                                                </div>
+													    </div>
+                                                    </div>
+                                                {% endfor %}
+											<!-- 添加新任务 -->
+											<div class="newWork row">
+												<div class="col-xs-3 col-md-3 col-lg-3">
+													<p class="add_work">添加任务...</p>
+												</div>
+											</div>											
+									  	</div>
+								  	<!-- 金币百分比 -->
+									  	<div class="moneyLinst col-xs-2 col-md-2 col-lg-2">
+									    	<div class="static_bar"><div class="progress_bar"></div></div>
+									   	 	<p class="money_percent">所获金币总数占50%</p>
+									  	</div>
+								</div>
+							    {% endfor %}
+                            <!-- 无任务的成员 -->
+								<div class="member_2 row member member_num noWork">
+									<div class="delete_member"><img src="{% static 'ProjectShow/img/picture/x.png' %}"></div>
+							  		<!-- 个人信息 -->
+									  	<div class="person col-xs-2 col-md-2 col-lg-2">
+									      	<div><img src="{% static 'ProjectShow/img/projectManage-personal/head_pic.png' %}"></div>
+									     	<div><input type="text" name="memberID" readonly="true" value="程序猿"/></div>
+									      	<div class="name_member">
+									      		<input type="text" value="前端工程师" class="input_name" readonly="true"/>
+									      		<span class="change_name">修改</span>
+									      		<span class="confirm_name">确认</span>
+									      	</div>
+									  	</div>
+								  	<!-- 任务栏-->
+									  	<div class="col-xs-8 col-md-8 col-lg-8">
+									  		<!-- 表头 不可更改 -->
+												<div class="table_th row">
+													<div class="col-xs-3 col-md-3 col-lg-3">任务名称</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">开始时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">截止时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">金币数</div>
+												</div>
+												<div class="workList">
+												</div>
+												<!-- 添加新任务 -->
+												<div class="newWork row">
+													<div class="col-xs-3 col-md-3 col-lg-3">
+														<p class="add_work">添加任务...</p>
+													</div>
+												</div>
+									  	</div>
+								  	<!-- 金币百分比 -->
+									  	<div class="moneyLinst col-xs-2 col-md-2 col-lg-2">
+									    	<div class="static_bar"><div class="progress_bar" style="width:50%"></div></div>
+									   	 	<p class="money_percent">所获金币总数占50%</p>
+									  	</div>
+								</div>
+							<!-- 添加新成员 -->
+								<div class="row member add_new_member">
+									<img src="{% static 'ProjectShow/img/picture/add.png' %}">
+							    	<span>添加成员...</span>
+								</div>
+							</div>
+						<!-- 已完成 -->
+							<div class="done">
+								<!-- 有任务的成员 -->
+								<div class=" member_1 row member member_num haveWork">
+									<div class="delete_member"><img src="{% static 'ProjectShow/img/picture/x.png' %}"></div>
+									<!-- 个人信息 -->
+									  	<div class="person col-xs-2 col-md-2 col-lg-2">
+									      	<div><img src="{% static 'ProjectShow/img/projectManage-personal/head_pic.png' %}"></div>
+									     	<div><input type="text" name="memberID" readonly="true" value="程序猿"/></div>
+									      	<div class="name_member">
+									      		<input type="text" value="前端工程师" class="input_name" readonly="true"/>
+									      	</div>
+									  	</div>
+								  	<!-- 任务栏-->
+									  	<div class="col-xs-8 col-md-8 col-lg-8">
+									  		<!-- 表头 不可更改 -->
+												<div class="table_th row">
+													<div class="col-xs-3 col-md-3 col-lg-3">任务名称</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">开始时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">截止时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">金币数</div>
+												</div>
+											<!-- 任务条目可修改 -->
+												<div class="workList" href="3">
+												</div>
+									  	</div>
+								  	<!-- 金币百分比 -->
+									  	<div class="moneyLinst col-xs-2 col-md-2 col-lg-2">
+									    	<div class="static_bar"><div class="progress_bar"></div></div>
+									   	 	<p class="money_percent">所获金币总数占50%</p>
+									  	</div>
+								</div>
+							<!-- 无任务的成员 -->
+								<div class="member_2 row member member_num noWork">
+									<div class="delete_member"><img src="{% static 'ProjectShow/img/picture/x.png' %}"></div>
+							  		<!-- 个人信息 -->
+									  	<div class="person col-xs-2 col-md-2 col-lg-2">
+									      	<div><img src="{% static 'ProjectShow/img/projectManage-personal/head_pic.png' %}"></div>
+									     	<div><input type="text" name="memberID" readonly="true" value="程序猿"/></div>
+									      	<div class="name_member">
+									      		<input type="text" value="前端工程师" class="input_name" readonly="true"/>
+									      	</div>
+									  	</div>
+								  	<!-- 任务栏-->
+									  	<div class="col-xs-8 col-md-8 col-lg-8">
+									  		<!-- 表头 不可更改 -->
+												<div class="table_th row">
+													<div class="col-xs-3 col-md-3 col-lg-3">任务名称</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">开始时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">截止时间</div>
+													<div class="col-xs-3 col-md-3 col-lg-3">金币数</div>
+												</div>
+												<div class="workList">
+												</div>
+									  	</div>
+								  	<!-- 金币百分比 -->
+									  	<div class="moneyLinst col-xs-2 col-md-2 col-lg-2">
+									    	<div class="static_bar"><div class="progress_bar" style="width:50%"></div></div>
+									   	 	<p class="money_percent">所获金币总数占50%</p>
+									  	</div>
+								</div>
+							</div>
+					<!-- 页码 -->
+						<div class="row Pagination_">
+					  		<div class="col-xs-4 col-xs-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+					  			<ul>
+									<li><a href="#" alt="1">&lt;</a></li>
+									<li><a href="#" alt="2">1</a></li>
+									<li><a href="#" alt="3">2</a></li>
+									<li><a href="#" alt="4">3</a></li>
+									<li><a href="#" alt="5">4</a></li>
+									<li><a href="#" alt="6">5</a></li>
+									<li><a href="#" alt="6">6</a></li>
+									<li><a href="#" alt="7">&gt;</a></li>
+								</ul> 
+							</div>
+						</div>
+			  	</div>	
+			  	<!-- 右边空白布局 -->
+				<div class="blank_col col-xs-1 col-md-1 col-lg-1"></div>
+			</div>	
+	  	</div>
+    <!-- 主体结束 -->
+    {% load staticfiles %}
+	<script type="text/javascript" src="{% static 'ProjectShow/js/ProjectManage_leader.js' %}"></script>
+{% endblock %}
+  	<!--尾部开始-->
+		<div id="tail" class="text-center">
+			<br/><br/>
+			<div class="row"><div class="col-xs-12 col-md-12 col-lg-12"><h3 style="font-weight:normal">共创社</h3></div></div>
+			<div class="row" style="margin-bottom:10px"><div class="col-xs-12 col-md-12 col-lg-12"><h4 style="font-weight:lighter; letter-spacing:3px">Co-Innocation Group</h4></div></div>
+			<div class="row"><div class="col-xs-12 col-md-12 col-lg-12"><a href="##">关于我们</a>
+			<label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>
+			<a href="##">联系我们</a>
+			<label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>
+			<a href="##">帮助中心</a>
+			<label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>
+			<a href="##">意见反馈</a></div></div>
+			<br/><br/><br/><br/><br/>
+		</div>
+  	<!--尾部结束-->
+  	<!--<script type="text/javascript" src="js/Public/bootstrap.min.js"></script>-->
+	<!--<script type="text/javascript" src="js/personal.js"></script>-->
+
+
+</body>
+</html>

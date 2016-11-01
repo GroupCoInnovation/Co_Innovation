@@ -1,0 +1,141 @@
+.mainBox {
+	margin-top: 20px;
+
+}
+.leftBox {
+	padding:20px 1px;
+	padding-right:20px;
+	margin-bottom: 20px;
+	border-right: 1px solid #999999;
+	border-bottom: none;
+	box-shadow: 8px 0px 3px #ebebeb;
+}
+.decoration{
+	position:absolute;
+	top:3px;
+	left:0px;
+}
+#L_upper{
+	position: absolute;
+	top:0px;
+	left:0px;
+}
+#R_down{
+	position: absolute;
+	bottom:0px;
+	right:0px;
+}
+._line{
+	margin-top:10px;
+	margin-bottom:10px;
+	padding:1px 1px;
+	font-size:18px;
+	position:relative;
+}
+._line p{
+	text-indent: 2em;
+	font-size: 16px;
+	line-height:32px;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	padding-right:15px ;
+}
+._line p:first-child{
+	padding-bottom:20px;
+	padding-top:20px;
+}
+._line span{
+	margin-bottom:15px;
+}
+._line h3{
+	display: inline;
+	margin-left:30px;
+}
+.line1 div{
+	padding:1px;
+	margin-bottom:40px;
+	position:static;
+	/*border:1px solid #F00;*/
+	height:80px;
+	position: relative;
+}
+.line1>div img{
+	width:84px;
+	height:auto;
+	float:left;
+}
+.line1>div h2{
+	display: inline;
+	width:86%;
+	height:42px;
+	margin-left:20px;
+	color:#99cc99;
+	font-weight: 800;
+	font-size: 36px;
+	line-height: 42px;
+}
+.line1>div h6{
+	float:right;
+	color:#999999;
+	line-height: 40px;
+	font-size:13px;
+	margin-bottom:0px;
+	position: absolute;
+	bottom:-40px;
+	right: 20px;
+	/*border:1px solid #0F0;*/
+}
+.line1>img{
+	margin-left:24%;
+	margin-right:24%;
+	width:52%;
+	height:auto;
+	margin-top:10px;
+}
+.rightBox {
+	height: 600px;
+	padding-top:0px;
+}
+.rContent {
+	position: relative;
+	height: 370px;
+	width: 290px;
+	margin-top: 90px;
+	color: #97989F;
+	float: right;
+	font-size: 18px;
+	border: 1px solid #9699A2;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right:0px;
+	background-color: #FFF;
+	z-index: 6;
+}
+
+.rContent p:hover {
+	color: #00a150;
+}
+
+.hotestPage {
+	position: absolute;
+	z-index: 1;
+	width: 50px;
+	height: 90px;
+	right: -50px;
+	top: 53px;
+	margin-top: 35px;
+	margin-right: 33px;
+	background-color: #00a150;
+}
+
+.hotestPage div {
+	width: 5px;
+	height: 50px;
+	margin-right: 18px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: #FFF;
+	font-size: 15px;
+	float: right;
+}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+ <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">
+{% endblock bootstrap_core_css %}
+
+
+{% block body %}
+  <img src="{{article.cover.url}}"/>
+  <h1> {{article.title}} </h1>
+  <h4> {{article.column.column_name}} &nbsp;&nbsp;&nbsp;{{article.column.column_text}} &nbsp;&nbsp;&nbsp; {{article.pub_date}}</h4> <br />
+  {{article.content|safe}}
+{% endblock %}

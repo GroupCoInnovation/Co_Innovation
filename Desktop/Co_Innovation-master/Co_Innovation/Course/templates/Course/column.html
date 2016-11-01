@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} 课程课件 {% endblock %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'base/css/LessonList.css' %}">
+{% endblock bootstrap_core_css %}
+
+
+{% block body %}
+
+
+
+
+
+
+<div class="lesson_list_container">
+  <ul class="lesson_list_nav">
+    <li><a href="{% url 'Course_index' %}" class="on">全部</a></li>
+    {% for column_loop in column_list %}
+      <li><a href="{{column_loop.get_absolute_url_of_course}}"> {{column_loop.column_name}} </a></li>
+    {% endfor %}
+    <!-- <li><a href="#">前端</a></li>
+    <li><a href="#">后台</a></li>
+    <li><a href="#">设计</a></li>
+    <li><a href="#">活动</a></li> -->
+  </ul>
+  <ul class="lesson_list_content">
+    {% for course in page_course.object_list %}
+    <li>
+      <div class="lesson_list_content_box">
+        <div class="list_green_bg">
+          <div class="list_gray_bg">
+            <div class="green_bg_title">{{course.column.column_name}}</div>
+            <div class="lesson_list_rect"><img src="{{course.get_absolute_url}}"></div>
+            <!--真正地内容在这里-->
+            <div class="lesson_content">
+              <div class="lesson_content_left">
+                <h3><a href="{{course.get_absolute_url}}"> {{course.title}} </a></h3>
+                <p><a href="{{course.get_absolute_url}}"> {{course.time}} </a></p>
+                <p><a href="{{course.get_absolute_url}}"> {{course.place}} </a></p>
+                <p><a href="{{course.get_absolute_url}}"> {{course.speaker}} </a></p>
+              </div>
+              <div class="lesson_content_right">
+                <div class="lesson_content_right_text"> {{course.summary}} </div>
+                <div>阅读{{course.reading_quantity}}</span></div>
+                <div>收藏<span>{{course.collection}}</span></div>
+                <div><span>{{course.like}}</span>人喜欢</div>
+              </div>
+              <div class="lesson_content_middle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  <!--
+  <ul class="lesson_list_pagination">
+  <li><a href="#" alt="1">&lt;</a></li>
+  <li><a href="#" alt="2">1</a></li>
+  <li><a href="#" alt="3">2</a></li>
+  <li><a href="#" alt="4">3</a></li>
+  <li><a href="#" alt="5">4</a></li>
+  <li><a href="#" alt="6">5</a></li>
+  <li><a href="#" alt="6">6</a></li>
+  <li><a href="#" alt="7">&gt;</a></li>
+</ul>
+</div> -->
+
+  <hr/>
+  当前页:{{page_course.number}} &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="?page=1"> 首页 </a> &nbsp;&nbsp;
+  {% if page_course.has_previous %} <a href="?page={{page_course.prevoius_page_number}}" > 上一页 </a> &nbsp;&nbsp; {% endif %}
+  {% if page_course.has_next %} <a href="?page={{page_course.next_page_number}}" > 下一页 </a> &nbsp;&nbsp; {% endif %}
+  <a href="?page={{paginator.num_pages}}"> 末页 </a>
+ {% endblock body %}

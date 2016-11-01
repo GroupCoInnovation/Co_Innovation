@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %} 项目管理(负责人) {% endblock %}
+
+</head>
+
+<body>
+{% block body %}
+    {% load staticfiles %}
+    <script type="text/javascript" src='{% static 'scripts/jquery-2.2.0.js'%}'></script>
+    <script>
+        (function($){
+            $(window).on("load",function() {
+                $("#change_intro").click(function(){
+                    alert('hehe');
+                });
+            });
+        })(jQuery);
+    </script>
+
+        <h1 align="center">{{ project.project_name }}</h1>
+            <p>{{ project.project_intro }}</p>
+            <button type="button" id='change_intro'>更改</button>
+        <p class="time">开始时间</p>
+        <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ project.start_time }}</p>
+        <br/>
+        <p class="time">结束时间</p>
+        <p class="time_num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ project.deadline }}</p>
+        <br/>
+        {% for mem in project.members.all %}
+            <hr style="height:5px;border:none;border-top:5px ridge green;" />
+            <div>
+                <h3>成员:</h3>
+                <p>{{ mem.user_name }}</p>
+                <p>前端工程师 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">更改</a></p></p>
+            </div>
+            <div>
+                <h3>任务</h3>
+                {% for task in task_list %}
+                    {% ifequal task.worker_id mem.id %}
+                        <p>{{ task.task_name }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除任务</a></p>
+                    {% endifequal %}
+                {% endfor %}
+                <a href="#">增加任务</a>
+            </div>
+
+        {% endfor %}
+        <hr style="height:5px;border:none;border-top:5px ridge green;" />
+{% endblock %}
+
+</body>
+</html>

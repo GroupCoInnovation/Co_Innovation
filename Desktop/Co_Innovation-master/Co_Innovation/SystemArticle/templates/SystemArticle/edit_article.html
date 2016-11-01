@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} 编辑文章 {% endblock title %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+ <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">
+{% endblock bootstrap_core_css %}
+
+
+{% block body %}
+<form action="#" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  封面:
+  <input type="file" name="cover_image" value={{artitle.cover}}/>
+  标题:
+  <input type="text" name="title" value={{article.title}} />
+  内容:
+  <input type="text" name="content" value={{article.content}} />
+  <input type="submit" value="提交" />
+</form>
+{% endblock body %}

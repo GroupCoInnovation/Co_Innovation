@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} 项目展示 {% endblock %}
+{% block ProjectShow_highlight %} id="_first" {% endblock %}
+
+{% load staticfiles %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+ <link rel="stylesheet" href="{% static 'base/css/ItemShow.css' %}">
+{% endblock bootstrap_core_css %}
+
+{% block body %}
+<div class="container">
+  <div class="row mainBox">
+    <div class="leftBox col-xs-8 col-md-8 col-lg-8">
+      <!-- 缩略图 row1 -->
+      <div class="row">
+        {% for project in page_project %}
+        <div class="_line col-xs-6 col-md-6 col-lg-6">
+          <div class="thumbnail">
+            <div class="caption">
+              <p><a href="{{project.get_absolute_url}}" target="_blank"><img src="{{project.cover.url}}" alt="14x14"/><span>&nbsp;系统开发&nbsp;</span>&nbsp;{{project.project_name}}</a></p>
+              <p>{{project.project_intro}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- 页码 -->
+      <div class="row">
+        <div class="_line col-xs-12 col-md-12 col-lg-12">
+          <ul class="Pagination_">
+            <li><a href="#" alt="1">&lt;</a></li>
+            <li><a href="#" alt="2">1</a></li>
+            <li><a href="#" alt="3">2</a></li>
+            <li><a href="#" alt="4">3</a></li>
+            <li><a href="#" alt="5">4</a></li>
+            <li><a href="#" alt="6">5</a></li>
+            <li><a href="#" alt="6">6</a></li>
+            <li><a href="#" alt="7">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr/>
+        <a href="?page=1"> 首页 </a>
+        {% if page_project.has_previous %}
+          <a href="?page={{page_project.previous_page_number}}"> 上一页 </a>
+        {% endif %}
+        {% if page_project.has_next %}
+          <a href="?page={{page_project.next_page_number}}"> 下一页纸</a>
+        {% endif %}
+        <a href="?page={{paginator.num_pages}}"> 末页 </a>
+
+      <hr/>
+
+    </div>
+    <div class="rightBox col-xs-4 col-md-4 col-lg-4">
+      <div class="rContent">
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+      </div>
+      <div class="hotestPage"><div>最热文章</div></div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

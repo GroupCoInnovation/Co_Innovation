@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+
+
+{% block title %} 写文章 {% endblock title %}
+
+{% block richtext %}
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'scripts/jquery-2.2.0.js'%}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+
+    <link href="{% static 'simditor/styles/simditor.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'simditor/scripts/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'simditor/scripts/module.js' %}"></script>
+    <script type="text/javascript" src="{% static 'simditor/scripts/hotkeys.js' %}"></script>
+    <script type="text/javascript" src="{% static 'simditor/scripts/uploader.js' %}"></script>
+    <script type="text/javascript" src="{% static 'simditor/scripts/simditor.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'base/css/WriteSystemPaper.css' %}">
+
+{% endblock richtext %}
+
+{% block body %}
+
+<script type="text/javascript">
+    (function($){
+        $(window).on("load",function(){
+            $("#SystemArticle_submit_art").click(function(){
+                $("form#art").attr("action","{% url 'SystemArticle_write_article' %}");
+                $("form#art").attr("target","_self");
+            });
+            $("#SystemArticle_preview_art").click(function(){
+                $("form#art").attr("action","{% url 'SystemArticle_preview' %}");
+                $("form#art").attr("target","_blank");
+            });
+            $("#Course_submit_art").click(function(){
+                $("form#art").attr("action","{% url 'Course_write_course' %}");
+                $("form#art").attr("target","_self");
+            });
+            $("#Course_preview_art").click(function(){
+                $("form#art").attr("action","{% url 'Course_preview' %}");
+                $("form#art").attr("target","_blank");
+            });
+        });
+
+    })(jQuery);
+</script>
+
+<div class="mainBox_background">
+  <form method = "post" enctype="multipart/form-data" target="_blank" id="art">
+    {% csrf_token %}
+		<div class="mainBox">
+			<div class="row Top">
+				<div class="leftList col-xs-1 col-md-1 col-lg-1">
+					<img src="{% static 'base/img/picture/paper.png' %}"/>
+				</div>
+				<div class="rightList col-xs-10 col-md-10 col-lg-10">
+					<img src="{% static 'base/img/picture/paper_text.png' %}"/>
+				</div>
+			</div>
+      <div class="row" align="">
+        <div class="leftList col-xs-12 col-md-12 col-lg-12" >
+			       <div class="row Title">
+				           <div class="leftList col-xs-1 col-md-1 col-lg-1">
+					                <p>文章标题</p>
+				            </div>
+				            <div class="rightList col-xs-3 col-md-3 col-lg-3">
+					                 <input type="text" name = "title"/>
+                   </div>
+			      </div>
+            <input type="hidden" name="summary" />
+			      <div class="row Category">
+				          <div class="leftList col-xs-1 col-md-1 col-lg-1">
+					               <p>文章分类</p>
+				          </div>
+				          <div class="rightList col-xs-3 col-md-3 col-lg-3">
+                					<select name="column_name">
+                            {% for column in column_list %}
+                              <option value="{{column.column_name}}"> {{column.column_name}}</option>
+                            {% endfor %}
+                					</select>
+				          </div>
+			      </div>
+            <div class="row Category">
+                  <div class="leftList col-xs-1 col-md-1 col-lg-1">
+                          <p>封面图片</p>
+                  </div>
+                  <div class="rightList col-xs-3 col-md-3 col-lg-3">
+                        <input type="file" name = "cover_image" id="doc" style="width:270px;" onchange="javascript:setImagePreview();">
+                        <script type="text/javascript">
+                      //下面用于图片上传预览功能
+                      function setImagePreview() {
+                          var docObj = document.getElementById("doc");
+                          //alert(docObj.value);
+                          var myreg = /[^\s]+\.(jpg|gif|png|bmp)/i;
+                          if (myreg.test(docObj.value)) {
+
+                              var imgObjPreview = document.getElementById("preview");
+                              if (docObj.files && docObj.files[0]) {
+                                  //火狐下，直接设img属性
+                                  imgObjPreview.style.display = 'block';
+                                  imgObjPreview.style.width = '320px';
+                                  imgObjPreview.style.height = '240px';
+                                  //imgObjPreview.src = docObj.files[0].getAsDataURL();
+
+                                  //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+                                  imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+                              }
+                              else {
+                                  //IE下，使用滤镜
+                                  docObj.select();
+                                  var imgSrc = document.selection.createRange().text;
+                                  var localImagId = document.getElementById("localImag");
+                                  //必须设置初始大小
+                                  localImagId.style.width = "150px";
+                                  localImagId.style.height = "180px";
+                                  //图片异常的捕捉，防止用户修改后缀来伪造图片
+                                  try {
+                                      localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                                      localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+                                  }
+                                  catch (e) {
+                                      alert("您上传的图片格式不正确，请重新选择!");
+                                      return false;
+                                  }
+                                  imgObjPreview.style.display = 'none';
+                                  document.selection.empty();
+                              }
+                              return true;
+                          } else {
+                              alert('上传图片格式不合法!');
+                              docObj.value = '';
+                          }
+                      }
+                  </script>
+      		    </div>
+            </div>
+            <div class="row Category" align="">
+              <div id="localImag">
+                <div class="leftList col-xs-4 col-md-4 col-lg-4" align="left">
+                  <img id="preview" style="width:100%;height:250px" src="{% static 'base/img/picture/pageR.png' %}"  style="display: block; ">
+                </div>
+              </div>
+            </div>
+          </div>
+
+      	</div>
+
+			-<div class="row MainText">
+				<div class="leftList col-md-offset-1 col-xs-1 col-md-1 col-lg-1">
+					<p>正文</p>
+				</div>
+				<div class=" col-xs-7 col-md-7 col-lg-7">
+					<!-- 添加正文编辑框 -->
+            <textarea id="editor01" name="content"  wrap="hard" style=" width: 1000px; height: 600px;"> </textarea>
+                <script>
+                var editor01 = new Simditor({
+                   textarea: $('#editor01'),
+                    placeholder : '这里输入内容...',
+                    toolbar : [
+                      'title',
+                      'bold',
+                      'italic',
+                      'underline',
+                      'strikethrough',
+                      'fontScale',
+                      'color',
+                      'ol',             //# ordered list
+                      'ul',             //# unordered list
+                      'blockquote',
+                      'code',           //# code block
+                      'table',
+                      'link',
+                      'image',
+                      'hr',             //# horizontal ruler
+                      'indent',
+                      'outdent',
+                      'alignment',
+                    ],  //工具栏
+                    upload : {
+                        url : '{% url 'simditor_file_upload' %}', //文件上传的接口地址 url of name'file_upload' settle the upload process
+                        fileKey: 'fileData', //服务器端获取文件数据的参数名
+                    }
+                });
+                </script>
+          <br/>
+				</div>
+			</div>
+      <div align="left">
+        <input src="{% static 'base/img/picture/button-submit.png' %}" type = "image" style="margin-left:300px"  id = "SystemArticle_submit_art"/>
+        <input src="{% static 'base/img/picture/button-preview.png' %}" style="margin-left:130px" type = "image"  id = "SystemArticle_preview_art" />
+      </div>
+		</div>
+
+  </form>
+	</div>
+</div>
+</div>
+  
+{% endblock body %}

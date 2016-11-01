@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block script %}
+        {% load staticfiles %}
+        <script type="text/javascript" src='{% static 'scripts/jquery-2.2.0.js'%}'></script>
+        <script>
+        (function($){
+            $(window).on("load",function(){
+              $("#user_name").blur(function(){
+                var uname = $("#user_name").val();
+                $.get("{% url 'find_user' %}",{'user_name':uname}, function(ret){
+                    $('#hint').html(ret);
+                })
+              });
+
+            });
+        })(jQuery);
+        </script>
+    {% endblock%}
+
+</head>
+<body>
+ {% block body %} body {% endblock %}
+</body>
+</html>

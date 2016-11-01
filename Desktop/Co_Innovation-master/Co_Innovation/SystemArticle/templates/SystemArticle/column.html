@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} 系统文章 {% endblock %}
+{% block SystemArticle_highlight %} id="_first" {% endblock %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+ <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">
+{% endblock bootstrap_core_css %}
+
+
+{% block body %}
+
+{% load staticfiles %}
+<div class="container">
+  <div class="row mainBox">
+    <div class="leftBox col-xs-8 col-md-8 col-lg-8">
+
+      <div class="topBox row">
+        <ul>
+          <li><a href="{% url 'SystemArticle_index' %}">&nbsp;&nbsp;全部&nbsp;&nbsp;</a></li>
+          {% for column_loop in column_list %}
+            {% if column_loop.column_name == column.column_name %}
+              <li><a id="_main" href="{{column_loop.get_absolute_url}}"> {{column_loop.column_name}}</a></li>
+            {% else %}
+              <li><a href="{{column_loop.get_absolute_url}}"> {{column_loop.column_name}}</a></li>
+            {% endif %}
+          {% endfor %}
+          <!-- <li><a href="">技术前沿</a></li>
+          <li><a href="">经验之谈</a></li> -->
+        </ul>
+      </div>
+
+      <ul class="page_">
+        {% for article in page_article.object_list %}
+        <li class="pageGroup">
+          <div class="Tleft">
+            <div class="Lhover">
+              <script type="text/javascript">
+                // value 是 url 的名字,而不是url
+                  if ( judge( {{ request.session.root }}, 8)) {
+
+                      if ("{{article.top}}" == "True") {
+
+                        document.write('<p><a href="{% url 'untop' article.id %}"> 取消置顶</a> </p>');
+                      }
+                      else {
+                          document.write('<p><a href="{% url 'top' article.id %}">置顶</a> </p>');
+                      }
+                  }
+
+                  if ( judge( {{ request.session.root }}, 4)) {
+                      document.write('<p><a href="{% url 'SystemArticle_edit_article' article.id %}"> 编辑 </a> </p>');
+                      document.write('<p><a href="{% url 'delete_article' article.id %}"> 删除 </a> </p>');
+                  }
+              </script>
+            </div>
+            <div class="topLeft">
+              <span><a href="{{article.column.get_absolute_url}}"> {{article.column.column_name}} </a></span>
+            </div>
+          </div>
+          <div class="rPicture">
+            <a href="{{article.get_absolute_url}}">
+              <img src="{{article.cover.url}}" style="width:159px; height:119px" alt="pic">
+            </a>
+          </div>
+          <div class="mContent">
+
+            <h4><a href="{{article.get_absolute_url}}">&nbsp;&nbsp;{{article.title}} </a></h4>
+            <p>作者:{{article.author}}&nbsp;&nbsp;&nbsp;&nbsp;发布者:{{article.pub_user}}</p>
+            <div class="pageBottom">
+              <span>2016/08/02 14:00</span>
+              <span>阅读(&nbsp;{{article.reading_quantity}}&nbsp;)</span>
+              <span>评论(&nbsp;13&nbsp;)</span>
+              <span>收藏(&nbsp;10&nbsp;)</span>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+
+
+      <!-- <ul class="Pagination_">
+        <li><a href="#" alt="1">&lt;</a></li>
+        <li><a href="#" alt="2">1</a></li>
+        <li><a href="#" alt="3">2</a></li>
+        <li><a href="#" alt="4">3</a></li>
+        <li><a href="#" alt="5">4</a></li>
+        <li><a href="#" alt="6">5</a></li>
+        <li><a href="#" alt="6">6</a></li>
+        <li><a href="#" alt="7">&gt;</a></li>
+      </ul> -->
+
+      <hr/>
+          当前页:{{page_article.number}}&nbsp;&nbsp;&nbsp;
+          <a href="?page=1">首页 </a>
+          {% if page_article.has_previous %}
+            &nbsp;
+            <a href = "?page={{page_article.previous_page_number}}"> 上一页 </a>
+          {% endif %}
+          {% if page_article.has_next %}
+            &nbsp;
+            <a href = "?page={{page_article.next_page_number}}"> 下一页 </a>
+          {% endif %}
+          &nbsp;<a href="?page={{paginator.num_pages}}"> 末页 </a>
+      <hr/>
+
+    </div>
+    <div class="rightBox col-xs-4 col-md-4 col-lg-4">
+      <div class="rContent">
+        {% for article in hotest_list %}
+            <p><a href="{{article.get_absolute_url}}">&nbsp;&nbsp;{{article.title}} </a></p>
+        {% endfor %}
+      </div>
+      <div class="hotestPage"><div>最热文章</div></div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

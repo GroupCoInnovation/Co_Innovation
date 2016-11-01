@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} {{project.project_name}} {% endblock title %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'base/css/lightbox.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/ItemShowDetail.css' %}">
+{% endblock bootstrap_core_css %}
+
+{% block body %}
+
+<!--主体开始-->
+<div class="container">
+  <div class="row mainBox">
+    <div class="leftBox col-xs-8 col-md-8 col-lg-8">
+      <!-- row1 -->
+      <div class="row">
+        <div class="_line1 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/framework.png' %}" alt="14x14"><h2>JAVA分布式架构</h2><h6>2016/08/02 14:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读( {{project.reading_quantity}} ) &nbsp;&nbsp;评论( 13 ) &nbsp;&nbsp;收藏( 10 )</h6></span>
+        </div>
+      </div>
+      <!-- row2 -->
+      <div class="row">
+        <div class="_line2 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/geometry.png' %}"><h4>项目概述</h4></span>
+          <p>
+            iBase4J是基于Java的开源框架搭建的分布式系统架构。
+            <br/>使用Maven对项目进行模块化管理，提高项目的易开发性、扩展性。
+            <br/>系统包括两个模块：系统管理模块、调度管理模块、Web展示模块。
+            <br/>
+            其中系统管理模块包括：系统权限组件、数据权限组件、数据字典组件、核心工具组件。
+            <br/>
+            每个模块都是独立的系统，可以无限扩展模块，模块之间使用Dubbo或MQ交互。
+            <br/>
+            系统管理模块进行多系统部署，注册到同一个Zookeeper集群服务注册中心，实现分布式部署。
+          </p>
+        </div>
+      </div>
+      <!-- row3 -->
+      <div class="row">
+        <div class="_line3 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/geometry.png' %}"><h4>团队简介</h4></span>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+              <div class="row">
+                {% for member in project.members.all %}
+                <div class="_member col-xs-3 col-md-3 col-lg-3">
+                  <ul>
+                    <li>{{member.user_name}}</li>
+                    {% for task in member.task_set.all %}
+                      <!-- <li>{{task.task_name}}</li> -->
+                    {% endfor %}
+                  </ul>
+                  <img src="{{member.head_image.url}}"/>
+                  <div style="clear:right"></div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- row4 -->
+      <div class="row">
+        <div class="_line4 col-xs-12 col-md-12 col-lg-12">
+          <span><img src="{% static 'base/img/picture/geometry.png' %}"><h4>项目展示</h4></span>
+          <p>
+            <span>数据库&nbsp;:&nbsp;</span>Druid数据库连接池，监控数据库访问性能，统计SQL的执行性能。 数据库密码加密。</br>
+            <span>持久层&nbsp;:&nbsp;</span>mybatis持久化，aop切换数据库实现读写分离，PageHelper分页。Transtraction注解事务。</br>
+            <span>MVC&nbsp;:&nbsp;</span>基于spring mvc注解,Rest风格Controller。Exception统一管理。</br>
+            <span>调度&nbsp;:&nbsp;</span>Spring+quartz, 可以查询、修改周期、暂停、删除、新增、立即执行，查询执行记录等。基于session的国际化提示信息，职责链模式的本地语言拦截器,Shiro登录、URL权限管理。会话管理，强制结束会话。</br>
+            <span>缓存和Session&nbsp;:&nbsp;</span>注解redis缓存数据，Spring-session和redis实现分布式session同步，重启服务会话不丢失。</br>
+            <span>多系统交互&nbsp;:&nbsp;</span>Dubbo,ActiveMQ多系统交互，ftp/sftp/fastdafs发送文件到独立服务器，使文件服务分离。</br>
+            <span>前后端分离&nbsp;:&nbsp;</span>没有权限的文件只用nginx代理即可。</br>
+            <span>日志&nbsp;:&nbsp;</span>log4j2打印日志，业务日志和调试日志分开打印。同时基于时间和文件大小分割日志文件。QQ、微信、新浪微博第三方登录。</br>
+            <span>项目构建&nbsp;:&nbsp;</span>maven构建项目，mybatis generator生成mybatis映射文件和Model。</br>
+            <span>工具类&nbsp;:&nbsp;</span>上传下载excel，汉字转拼音，身份证号码验证，数字转大写人民币，FTP/SFTP/fastdafs上传下载，发送邮件，redis缓存，加密等等。</br>
+          </p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="rightBox col-xs-4 col-md-4 col-lg-4">
+      <div class="rContent">
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+        <p>最新Linux高级运维服务搭建及mysql演练</p>
+      </div>
+      <div class="hotestPage"><div>最热文章</div></div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

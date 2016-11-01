@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} {{request.session.user_name}} {% endblock title %}
+{% block body %}
+<script type="text/javascript">
+  (function($){
+    $(window).on("load",function(){
+        $("#user_name").blur(function(){
+          var uname = $("#user_name").val();
+          $.get("{% url 'find_user' %}",{'user_name':uname}, function(ret){
+            $('#hint').html(ret);
+          })
+        });
+    });
+  })(jQuery);
+</script>
+  <form action = "{% url 'edit_root' %}" method="post">
+    {% csrf_token %}
+    用户名: <input type="text" name="user_name" id="user_name" />
+    <p id="hint"></p>
+    <input type="submit" value="确定" />
+  </form>
+{% endblock body %}

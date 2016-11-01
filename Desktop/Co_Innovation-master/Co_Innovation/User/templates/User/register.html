@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} {{request.session.user_name}} {% endblock title %}
+{% block body %}
+{% load staticfiles %}
+<div class="row" style="border-top:7px solid #00a150;"></div>
+  <!--顶部结束-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/css/open_authority.css' %}">
+ <script type="text/javascript" src="{% static 'base/js/open_authority.js' %}"></script>
+  <form action="register" method="post">
+    {% csrf_token %}
+  <div class="open_authority_container">
+    <div class="white_bg">
+      <div class="open_authority_title">
+        <img src="{% static 'base/img/user_root/user_root_icon.png' %}">
+        <span>开设用户</span>
+      </div>
+      <div class="open_authority_info" style="width: 800px">
+        <ul>
+          <li>
+            <div>账号</div>
+            <input id="input0" type="text" style="width: 200px" name="user_name"><span ref="1" style="color: red;" id="judge0">＊请输入正确格式的账号</span>
+          </li>
+          <li>
+            <div>密码</div>
+            <input type="password" id="pw1" style="width: 200px" name="password"><span ref="1" style="color: red;" id="judge1">＊请输入6位以上的密码</span>
+          </li>
+          <li>
+            <div>确认密码</div>
+            <input type="password" id="pw2" style="width: 200px"><span ref="0" style="color: red;display: none" id="judge2">＊两次密码输入不符合</span>
+          </li>
+          <li>
+            <div>邮箱</div>
+            <input type="text" id="input3" style="width: 200px" name="email"><span ref="1" style="color: red;" id="judge3">＊请输入邮箱</span>
+          </li>
+          <li>
+            <input type="submit" value="确定" id="sub" style="width: 140px;margin-left: 120px;" disabled />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </form>
+
+  <!--<form action = "register" method = "post">
+    {% csrf_token %}
+    用户名: <input type="text" name="user_name"> <br />
+    密码: <input type="text" name="password"> <br />
+    <input type="submit" value="提交" />
+  </form>-->
+
+{% endblock body %}

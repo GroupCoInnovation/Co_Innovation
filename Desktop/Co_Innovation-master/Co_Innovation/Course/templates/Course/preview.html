@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+
+{% endblock bootstrap_core_css %}
+
+
+{% block body %}
+  <img src="{{course.cover.url}}"/>
+  <h1> {{course.title}} </h1>
+  <h4> {{course.column.column_name}} &nbsp;&nbsp;&nbsp;{{course.column.column_text}} &nbsp;&nbsp;&nbsp;</h4> <br />
+  <p>title: {{course.title}} </p>
+  {{course.content|safe}}
+{% endblock %}

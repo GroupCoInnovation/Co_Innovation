@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} {{article.title}} {% endblock %}
+
+{% block body %}
+
+{% block bootstrap_core_css %}
+{% load staticfiles %}
+{# <link rel="stylesheet" href="{% static 'base/css/SystemPageStyle.css' %}">#}
+    <link rel="stylesheet" href="{% static 'base/css/SystemPageDetail.css' %}">
+{% endblock bootstrap_core_css %}
+
+
+{% load staticfiles %}
+<div class="container">
+  <div class="row mainBox">
+    <div class="leftBox col-xs-8 col-md-8 col-lg-8">
+      <!-- row1 -->
+      <div class="row">
+        <div class="_line line1 col-xs-12 col-md-12 col-lg-12">
+          <div><img src="{% static 'base/img/picture/plane.png' %}" alt="14x14"><h2>&nbsp;&nbsp;{{ article.title}}</h2>
+              <h6>2016/08/02 14:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读( {{article.reading_quantity}} ) &nbsp;&nbsp;评论( 13 ) &nbsp;&nbsp;收藏( {{article.collection.count}} )</h6>
+          </div>
+          <img src="{{article.cover.url}}" alt="84x84">
+        </div>
+      </div>
+      <!-- row2 -->
+        <div style="position: relative; padding:1px ; margin:20px 1px">
+          <p><img id="L_upper" src="{% static 'base/img/picture/L_upper.png' %}" alt="12x12"></p>
+            <div class="row">
+            <div class="_line col-xs-12 col-md-12 col-lg-12">
+
+              {{ article.content|safe }}
+
+            </div>
+          </div>
+          <p><img id="R_down" src="{% static 'base/img/picture/R_down.png' %}" alt="84x84"/></p>
+        </div>
+
+    </div>
+    <div class="rightBox col-xs-4 col-md-4 col-lg-4">
+      <div class="rContent">
+        {% for article in hotest_list %}
+            <p><a href="{{article.get_absolute_url}}">&nbsp;&nbsp;{{article.title}} </a></p>
+        {% endfor %}
+      </div>
+      <div class="hotestPage"><div>最热文章</div></div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

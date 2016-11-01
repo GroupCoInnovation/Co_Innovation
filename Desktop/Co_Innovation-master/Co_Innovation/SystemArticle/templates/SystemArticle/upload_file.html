@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} 上传文件 {% endblock %}
+{% block body %}
+
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'scripts/jquery-2.2.0.js'%}"></script>
+<script type="text/javascript" src="{% static 'base/js/ajaxfileupload.js'%}" ></script>
+
+    <script type="text/javascript">
+	(function($){
+
+		$(window).on("load",function() {
+
+            jQuery.extend({
+            handleError: function( s, xhr, status, e ) {
+                // If a local callback was specified, fire it
+                if ( s.error )
+                    s.error( xhr, status, e );
+                // If we have some XML response text (e.g. from an AJAX call) then log it in the console
+                else if(xhr.responseText)
+                    console.log(xhr.responseText);
+            }
+            });
+
+			$('#submit').click(function(){
+                //alert('123');
+                var file = $('#fileData').val();
+                //var fileName =
+                //alert(file);
+                $.ajaxFileUpload({
+                      type: 'POST',
+                      url:"{% url 'SystemArticle_upload_file' %}",//服务器端程序
+                      secureuri:false,
+                      //fileKey: 'fileData',
+
+                      dataType: 'text',
+                      data:{'file':file},
+                      fileElementId:'fileData',//input框的ID
+                      //dataType: 'json',//返回数据类型
+
+
+                      success: function (upload_info){//上传成功
+                          alert('success');
+                          //alert(upload_info);
+                          $('#state').html(upload_info);
+                          $('#state').attr('href' ,upload_info);
+                      },
+                      error: function(upload_info, errorThrown) {
+                          alert('error');
+
+                      }
+                });
+            });
+
+					$("#fileData").change(function(){
+						var val = $("#fileData").val().substring(12);
+						$("#upload_file_road").val(val);
+					});
+			});
+	})(jQuery);
+</script>
+<link rel="stylesheet" href="{% static 'base/css/Uploadfile.css' %}">
+<div class="mainBox_background">
+		<div class="mainBox">
+			<div class="Title"><img src="{% static 'base/img/picture/file.png'%}"/>
+                <img src="{% static 'base/img/picture/uploadtext.png'%}"/>
+            </div>
+			<div class="Upload">
+
+
+                        <input type="file" id="fileData" name="fileData" style="display: none"/>
+                        <input type="text" id="upload_file_road" name="upload_file_road" value="" placeholder="仅能上传zip,rar,7z压缩格式文件" readonly="readonly" onclick="fileData.click();">
+                        <button id = "submit" >upload</button>
+
+                    <br/><br/>
+                    您上传的文件链接为: <a id="state" href=""></a>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+</html>

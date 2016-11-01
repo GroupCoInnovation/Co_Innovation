@@ -1,0 +1,85 @@
+.user_search_container {
+	background-color: rgb(1, 162, 83);
+	width: 100%;
+	height: 1568px;
+	padding-top: 25px;
+	z-index: 13;
+}
+.white_bg {
+	background-color: rgb(255, 255, 255);
+	margin-left: 44px;
+	margin-right: 44px;
+	height: 1568px;
+	z-index: 14;
+	position: relative;
+}
+.user_search_title {
+	position: absolute;
+	top: 25px;
+	left: 75px;
+	height: 78px;
+	line-height: 78px;
+	width: 60%;
+}
+.user_search_title span {
+	position: absolute;
+	top: 10px;
+	font-size: 37.5px;
+	color: rgb(1, 162, 83);
+	line-height: 1.5;
+	margin-left: 35px;
+	letter-spacing: 12px;
+}
+.user_search_content {
+	position: absolute;
+	width: 80%;
+	height: 60px;
+	left: 75px;
+	top: 120px;
+}
+.user_search_content span {
+	font-size: 16.667px;
+	color: rgb(1, 162, 83);
+  	font-weight: bold;
+  	line-height: 2;
+  	margin-right: 32px;
+  	float: left;
+}
+
+.user_search_input_box {
+	float: left;
+	width:32%;
+	height: 55px;
+}
+.user_search_input_box input {
+	width:100%;
+	height: 50%;
+	border: 1.25px solid rgb(160, 160, 160);
+  	background-color: rgb(242, 242, 242);
+}
+.user_not_exist_text {
+	font-size: 16.667px;
+	color: rgb(247, 52, 37);
+	font-weight: bold;
+	line-height: 2;
+	padding-left: 2px;
+}
+.serach_user_button, .manage_user_button {
+	border-radius: 10px;
+	width: 97.5px;
+  	height: 27.5px;
+  	line-height: 27.5px;
+  	float: left;
+  	font-size: 16.667px;
+  	text-align: center;
+  	margin-left: 5px;
+}
+.serach_user_button {
+	border: 1.25px solid rgb(1, 162, 83);
+	color: rgb(1, 162, 83);
+}
+.manage_user_button {
+	border: 1.25px solid rgb(179, 179, 179);
+	color: rgb(179, 179, 179);
+}
+
